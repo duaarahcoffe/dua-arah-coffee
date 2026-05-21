@@ -14,7 +14,6 @@
     --accent:#8C6A50;
     --light:#FAF6F0;
     --cream:#EFE6DD;
-    --white:#ffffff;
 }
 
 *{
@@ -89,8 +88,8 @@ nav a{
 
 .hero p{
     font-size:20px;
-    color:#EFE6DD;
     margin-bottom:30px;
+    color:#EFE6DD;
 }
 
 .btn{
@@ -182,7 +181,7 @@ nav a{
     text-align:center;
 }
 
-/* FORM */
+/* ORDER */
 
 .order-section{
     background:white;
@@ -202,8 +201,7 @@ nav a{
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group textarea{
     width:100%;
     padding:14px;
     border-radius:10px;
@@ -215,13 +213,13 @@ nav a{
 
 .payment-box{
     background:var(--cream);
-    padding:18px;
+    padding:20px;
     border-radius:15px;
     margin-bottom:20px;
 }
 
 .payment-option{
-    margin-bottom:12px;
+    margin-bottom:10px;
     display:flex;
     align-items:center;
     gap:10px;
@@ -234,11 +232,6 @@ nav a{
     background:var(--cream);
     padding:25px;
     border-radius:15px;
-}
-
-.cart h3{
-    margin-bottom:15px;
-    color:var(--primary);
 }
 
 .cart-item{
@@ -316,13 +309,13 @@ footer{
 
 @media(max-width:768px){
 
-    .hero h1{
-        font-size:34px;
-    }
+.hero h1{
+    font-size:34px;
+}
 
-    .hero p{
-        font-size:16px;
-    }
+.hero p{
+    font-size:16px;
+}
 
 }
 
@@ -398,7 +391,8 @@ Espresso murni dengan rasa kuat dan segar.
 
 <div class="qty-box">
 
-<button class="qty-btn" onclick="kurang('americano')">
+<button class="qty-btn"
+onclick="kurang('americano')">
 -
 </button>
 
@@ -406,7 +400,8 @@ Espresso murni dengan rasa kuat dan segar.
 0
 </div>
 
-<button class="qty-btn" onclick="tambah('americano')">
+<button class="qty-btn"
+onclick="tambah('americano')">
 +
 </button>
 
@@ -438,7 +433,8 @@ Espresso premium dipadukan susu segar dan gula aren asli.
 
 <div class="qty-box">
 
-<button class="qty-btn" onclick="kurang('aren')">
+<button class="qty-btn"
+onclick="kurang('aren')">
 -
 </button>
 
@@ -446,7 +442,8 @@ Espresso premium dipadukan susu segar dan gula aren asli.
 0
 </div>
 
-<button class="qty-btn" onclick="tambah('aren')">
+<button class="qty-btn"
+onclick="tambah('aren')">
 +
 </button>
 
@@ -460,7 +457,7 @@ Espresso premium dipadukan susu segar dan gula aren asli.
 
 </section>
 
-<!-- FORM -->
+<!-- ORDER -->
 
 <section id="pesan" class="container">
 
@@ -503,18 +500,92 @@ Pesanan Anda
 </h3>
 
 <div class="payment-option">
-<input type="radio" name="payment" value="QRIS" checked>
+<input type="radio"
+name="payment"
+value="QRIS"
+checked>
 <label>QRIS</label>
 </div>
 
 <div class="payment-option">
-<input type="radio" name="payment" value="Cash">
+<input type="radio"
+name="payment"
+value="Cash">
 <label>Cash</label>
 </div>
 
 <div class="payment-option">
-<input type="radio" name="payment" value="Transfer BCA">
+<input type="radio"
+name="payment"
+value="Transfer BCA">
 <label>Transfer BCA</label>
+</div>
+
+</div>
+
+<!-- PAYMENT INFO -->
+
+<div id="paymentInfo"
+style="
+display:block;
+margin-top:20px;
+padding:20px;
+background:#FAF6F0;
+border-radius:12px;
+border:1px solid #ddd;
+">
+
+<!-- QRIS -->
+
+<div id="qrisBox"
+style="text-align:center;">
+
+<h3 style="margin-bottom:15px;">
+Scan QRIS
+</h3>
+
+<img src="qris.jpg"
+alt="QRIS"
+style="
+width:300px;
+max-width:100%;
+border-radius:12px;
+margin-bottom:15px;
+border:1px solid #ddd;
+">
+
+<p>
+Silakan scan QRIS untuk melakukan pembayaran.
+</p>
+
+</div>
+
+<!-- BCA -->
+
+<div id="bcaBox"
+style="
+display:none;
+text-align:center;
+">
+
+<h3 style="margin-bottom:15px;">
+Transfer BCA
+</h3>
+
+<img src="bca.jpg"
+alt="Transfer BCA"
+style="
+width:300px;
+max-width:100%;
+border-radius:12px;
+margin-bottom:15px;
+border:1px solid #ddd;
+">
+
+<p>
+Silakan transfer ke rekening BCA di atas.
+</p>
+
 </div>
 
 </div>
@@ -523,18 +594,18 @@ Pesanan Anda
 
 <div class="cart">
 
-<h3>
+<h3 style="margin-bottom:15px;">
 🛒 Keranjang Pesanan
 </h3>
 
 <div class="cart-item">
 <span>Americano</span>
-<span id="cart-americano">0</span>
+<span id="cart-americano">0 x</span>
 </div>
 
 <div class="cart-item">
 <span>Kopi Aren</span>
-<span id="cart-aren">0</span>
+<span id="cart-aren">0 x</span>
 </div>
 
 <div class="total">
@@ -549,8 +620,8 @@ Rp 0
 <br>
 
 <button class="btn"
-        style="width:100%;"
-        onclick="pesanWA()">
+style="width:100%;"
+onclick="pesanWA()">
 
 Kirim Pesanan via WhatsApp
 
@@ -579,8 +650,8 @@ Info promo terbaru dan keseruan seduh harian kami.
 </p>
 
 <a href="https://www.instagram.com/duaarah.coffee"
-   target="_blank"
-   class="insta-btn">
+target="_blank"
+class="insta-btn">
 
 Kunjungi Instagram
 
@@ -607,8 +678,8 @@ Kunjungi Instagram
 <!-- FLOATING WA -->
 
 <a href="https://wa.me/6288210129982"
-   target="_blank"
-   class="floating-wa">
+target="_blank"
+class="floating-wa">
 
 💬
 
@@ -621,88 +692,91 @@ let aren = 0;
 
 function tambah(menu){
 
-    if(menu === 'americano'){
-        americano++;
-    }
+if(menu === 'americano'){
+americano++;
+}
 
-    if(menu === 'aren'){
-        aren++;
-    }
+if(menu === 'aren'){
+aren++;
+}
 
-    updateCart();
+updateCart();
 }
 
 function kurang(menu){
 
-    if(menu === 'americano' && americano > 0){
-        americano--;
-    }
+if(menu === 'americano' && americano > 0){
+americano--;
+}
 
-    if(menu === 'aren' && aren > 0){
-        aren--;
-    }
+if(menu === 'aren' && aren > 0){
+aren--;
+}
 
-    updateCart();
+updateCart();
 }
 
 function rupiah(angka){
 
-    return angka.toLocaleString('id-ID');
+return angka.toLocaleString('id-ID');
 }
 
 function updateCart(){
 
-    document.getElementById('qty-americano').innerHTML = americano;
-    document.getElementById('qty-aren').innerHTML = aren;
+document.getElementById('qty-americano')
+.innerHTML = americano;
 
-    document.getElementById('cart-americano').innerHTML =
-        americano + " x";
+document.getElementById('qty-aren')
+.innerHTML = aren;
 
-    document.getElementById('cart-aren').innerHTML =
-        aren + " x";
+document.getElementById('cart-americano')
+.innerHTML = americano + " x";
 
-    let total =
-        (americano * 12500) +
-        (aren * 17500);
+document.getElementById('cart-aren')
+.innerHTML = aren + " x";
 
-    document.getElementById('total').innerHTML =
-        "Rp " + rupiah(total);
+let total =
+(americano * 12500) +
+(aren * 17500);
+
+document.getElementById('total')
+.innerHTML = "Rp " + rupiah(total);
 }
 
 function pesanWA(){
 
-    let nama =
-        document.getElementById('nama').value;
+let nama =
+document.getElementById('nama').value;
 
-    let alamat =
-        document.getElementById('alamat').value;
+let alamat =
+document.getElementById('alamat').value;
 
-    let catatan =
-        document.getElementById('catatan').value;
+let catatan =
+document.getElementById('catatan').value;
 
-    let pembayaran =
-        document.querySelector(
-            'input[name="payment"]:checked'
-        ).value;
+let pembayaran =
+document.querySelector(
+'input[name="payment"]:checked'
+).value;
 
-    if(
-        !nama ||
-        !alamat ||
-        (americano === 0 && aren === 0)
-    ){
+if(
+!nama ||
+!alamat ||
+(americano === 0 && aren === 0)
+){
 
-        alert(
-            'Lengkapi data dan pilih menu.'
-        );
+alert(
+'Lengkapi data dan pilih menu.'
+);
 
-        return;
-    }
+return;
+}
 
-    let total =
-        (americano * 12500) +
-        (aren * 17500);
+let total =
+(americano * 12500) +
+(aren * 17500);
 
-    let teks = `
+let teks = `
 Halo Dua Arah Coffee, saya ingin memesan:
 
 Nama:
@@ -727,12 +801,59 @@ ${catatan ? catatan : '-'}
 Terima kasih.
 `;
 
-    let url =
-    "https://wa.me/6288210129982?text=" +
-    encodeURIComponent(teks);
+let url =
+"https://wa.me/6288210129982?text=" +
+encodeURIComponent(teks);
 
-    window.open(url, '_blank');
+window.open(url, '_blank');
 }
+
+/* PAYMENT SWITCH */
+
+const paymentRadios =
+document.querySelectorAll(
+'input[name="payment"]'
+);
+
+paymentRadios.forEach(radio => {
+
+radio.addEventListener('change', function(){
+
+const paymentInfo =
+document.getElementById('paymentInfo');
+
+const qrisBox =
+document.getElementById('qrisBox');
+
+const bcaBox =
+document.getElementById('bcaBox');
+
+paymentInfo.style.display = 'block';
+
+qrisBox.style.display = 'none';
+bcaBox.style.display = 'none';
+
+if(this.value === 'QRIS'){
+
+qrisBox.style.display = 'block';
+
+}
+
+if(this.value === 'Transfer BCA'){
+
+bcaBox.style.display = 'block';
+
+}
+
+if(this.value === 'Cash'){
+
+paymentInfo.style.display = 'none';
+
+}
+
+});
+
+});
 
 updateCart();
 
