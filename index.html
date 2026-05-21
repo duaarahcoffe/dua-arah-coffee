@@ -1,775 +1,250 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dua Arah Coffee | Kopi untuk Setiap Pilihan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dua Arah Coffee</title>
 
-    <style>
+<style>
+:root{
+--primary:#4A3525;
+--accent:#8C6A50;
+--bg:#FAF6F0;
+}
 
-        :root {
-            --primary-color: #4A3525;
-            --secondary-color: #3D2A21;
-            --accent-color: #8C6A50;
-            --bg-light: #FAF6F0;
-            --text-dark: #2B1E16;
-            --text-light: #FFFFFF;
-            --cream: #EFE6DD;
-        }
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+}
 
-        *{
-            box-sizing:border-box;
-            margin:0;
-            padding:0;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+header{
+background:var(--primary);
+color:white;
+padding:20px;
+text-align:center;
+}
 
-        body{
-            background:var(--bg-light);
-            color:var(--text-dark);
-            line-height:1.6;
-        }
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
 
-        html{
-            scroll-behavior:smooth;
-        }
+/* MENU */
+.menu-card{
+display:flex;
+gap:15px;
+align-items:center;
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+}
 
-        header{
-            background:var(--primary-color);
-            color:white;
-            padding:20px;
-            position:sticky;
-            top:0;
-            z-index:1000;
-        }
+.menu-card img{
+width:70px;
+height:70px;
+border-radius:10px;
+object-fit:cover;
+}
 
-        .nav-container{
-            max-width:1100px;
-            margin:auto;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
+.btn{
+background:var(--accent);
+color:white;
+border:none;
+padding:8px 12px;
+border-radius:8px;
+cursor:pointer;
+}
 
-        .logo{
-            font-size:24px;
-            font-weight:800;
-            text-transform:uppercase;
-        }
+/* CART */
+.cart{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-top:20px;
+}
 
-        .logo span{
-            display:block;
-            font-size:12px;
-            font-weight:300;
-            letter-spacing:4px;
-        }
+/* INPUT */
+input,select{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin-left:20px;
-        }
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
 
-        .hero{
-            background:
-            linear-gradient(rgba(43,30,22,0.8), rgba(74,53,37,0.85)),
-            url('coffee-bg.jpg') center/cover;
-            color:white;
-            text-align:center;
-            padding:120px 20px;
-        }
+.modal-content{
+background:white;
+padding:20px;
+border-radius:10px;
+text-align:center;
+max-width:300px;
+}
 
-        .hero h1{
-            font-size:48px;
-            margin-bottom:15px;
-        }
+.modal img{
+width:100%;
+border-radius:10px;
+}
 
-        .hero p{
-            font-size:20px;
-            margin-bottom:30px;
-            color:var(--cream);
-        }
+.close{
+color:red;
+cursor:pointer;
+font-weight:bold;
+display:block;
+margin-top:10px;
+}
 
-        .btn-main{
-            display:inline-block;
-            background:var(--accent-color);
-            color:white;
-            padding:14px 30px;
-            border:none;
-            border-radius:30px;
-            text-decoration:none;
-            font-weight:bold;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .btn-main:hover{
-            background:#A37F65;
-        }
-
-        .container{
-            max-width:1100px;
-            margin:auto;
-            padding:60px 20px;
-        }
-
-        .section-title{
-            text-align:center;
-            font-size:32px;
-            margin-bottom:40px;
-            color:var(--primary-color);
-        }
-
-        .menu-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:30px;
-        }
-
-        .menu-card{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .menu-img{
-            width:100%;
-            max-width:220px;
-            border-radius:12px;
-            margin-bottom:20px;
-        }
-
-        .menu-title{
-            font-size:22px;
-            color:var(--primary-color);
-        }
-
-        .menu-price{
-            color:var(--accent-color);
-            font-weight:bold;
-            margin:10px 0;
-        }
-
-        .order-section{
-            background:white;
-            padding:40px;
-            border-radius:15px;
-            max-width:650px;
-            margin:auto;
-            box-shadow:0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .form-group{
-            margin-bottom:20px;
-        }
-
-        .form-group label{
-            display:block;
-            margin-bottom:8px;
-            font-weight:600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea{
-            width:100%;
-            padding:12px;
-            border:1px solid #D0C5BA;
-            border-radius:8px;
-            background:var(--bg-light);
-        }
-
-        .form-row{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:15px;
-        }
-
-        .checkbox-group{
-            background:var(--bg-light);
-            padding:12px;
-            border-radius:8px;
-            border:1px dashed var(--accent-color);
-        }
-
-        .cart-box{
-            background:var(--bg-light);
-            border:1px solid #D0C5BA;
-            border-radius:10px;
-            padding:20px;
-            margin-bottom:20px;
-        }
-
-        .instagram-section{
-            background:var(--cream);
-            text-align:center;
-            padding:50px 20px;
-        }
-
-        .instagram-card{
-            background:white;
-            max-width:450px;
-            margin:auto;
-            padding:25px;
-            border-radius:12px;
-        }
-
-        .btn-instagram{
-            display:inline-block;
-            margin-top:20px;
-            padding:10px 25px;
-            border-radius:20px;
-            color:white;
-            text-decoration:none;
-            font-weight:bold;
-            background:linear-gradient(
-                45deg,
-                #f09433,
-                #dc2743,
-                #bc1888
-            );
-        }
-
-        footer{
-            background:var(--secondary-color);
-            color:white;
-            text-align:center;
-            padding:30px;
-        }
-
-        .floating-wa{
-            position:fixed;
-            bottom:20px;
-            right:20px;
-            width:60px;
-            height:60px;
-            border-radius:50%;
-            background:#25D366;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            color:white;
-            font-size:28px;
-            text-decoration:none;
-        }
-
-        @media(max-width:768px){
-
-            .hero h1{
-                font-size:32px;
-            }
-
-            .hero p{
-                font-size:16px;
-            }
-
-            .form-row{
-                grid-template-columns:1fr;
-            }
-        }
-
-    </style>
+.checkout{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-    <div class="nav-container">
-
-        <div class="logo">
-            dua arah
-            <span>COFFEE</span>
-        </div>
-
-        <nav>
-            <a href="#menu">Menu</a>
-            <a href="#pesan">Pesan</a>
-            <a href="#instagram">Instagram</a>
-        </nav>
-
-    </div>
-
+<h2>☕ Dua Arah Coffee</h2>
 </header>
 
-<section class="hero">
-
-    <h1>dua arah COFFEE</h1>
-
-    <p>
-        "Kopi untuk setiap pilihan, ke mana pun arahmu."
-    </p>
-
-    <a href="#pesan" class="btn-main">
-        Pesan Sekarang
-    </a>
-
-</section>
-
-<section id="menu" class="container">
-
-    <h2 class="section-title">
-        Daftar Menu
-    </h2>
-
-    <div class="menu-grid">
-
-        <div class="menu-card">
-
-            <img src="americano.jpg" class="menu-img">
-
-            <h3 class="menu-title">
-                Americano
-            </h3>
-
-            <div class="menu-price">
-                Rp 12.500
-            </div>
-
-            <p>
-                Espresso murni dengan rasa kuat dan segar.
-            </p>
-
-        </div>
-
-        <div class="menu-card">
-
-            <img src="aren.jpg" class="menu-img">
-
-            <h3 class="menu-title">
-                Kopi Aren
-            </h3>
-
-            <div class="menu-price">
-                Rp 17.500
-            </div>
-
-            <p>
-                Espresso premium dipadukan susu dan gula aren.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="pesan" class="container">
-
-    <h2 class="section-title">
-        Formulir Pemesanan
-    </h2>
-
-    <div class="order-section">
-
-        <form>
-
-            <div class="form-group">
-
-                <label>Nama Lengkap</label>
-
-                <input type="text"
-                       id="nama"
-                       placeholder="Masukkan nama">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Menu 1</label>
-
-                <select id="produk1">
-
-                    <option value="">
-                        -- Pilih Menu --
-                    </option>
-
-                    <option value="Americano">
-                        Americano
-                    </option>
-
-                    <option value="Kopi Aren">
-                        Kopi Aren
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Jumlah Menu 1</label>
-
-                <input type="number"
-                       id="jumlah1"
-                       value="1"
-                       min="1">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Menu 2 (Opsional)</label>
-
-                <select id="produk2">
-
-                    <option value="">
-                        -- Tidak Memesan --
-                    </option>
-
-                    <option value="Americano">
-                        Americano
-                    </option>
-
-                    <option value="Kopi Aren">
-                        Kopi Aren
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Jumlah Menu 2</label>
-
-                <input type="number"
-                       id="jumlah2"
-                       value="1"
-                       min="1">
-
-            </div>
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>Tingkat Gula</label>
-
-                    <select id="gula">
-                        <option>Normal Sugar</option>
-                        <option>Less Sugar</option>
-                        <option>No Sugar</option>
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Tingkat Es</label>
-
-                    <select id="ice">
-                        <option>Normal Ice</option>
-                        <option>Less Ice</option>
-                        <option>No Ice</option>
-                    </select>
-
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Tambahan</label>
-
-                <div class="checkbox-group">
-
-                    <input type="checkbox"
-                           id="extrashot">
-
-                    Extra Shot Espresso (+ Rp 2.500)
-
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Alamat Pengiriman</label>
-
-                <textarea id="alamat"
-                          rows="3"></textarea>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Catatan Tambahan</label>
-
-                <textarea id="catatan"
-                          rows="2"></textarea>
-
-            </div>
-
-            <!-- KERANJANG -->
-
-            <div class="cart-box">
-
-                <h3 style="margin-bottom:15px;">
-                    🛒 Keranjang Pesanan
-                </h3>
-
-                <p id="cartMenu1">
-                    Menu 1: -
-                </p>
-
-                <p id="cartMenu2">
-                    Menu 2: -
-                </p>
-
-                <p id="cartExtra">
-                    Extra Shot: Tidak
-                </p>
-
-                <hr style="margin:15px 0;">
-
-                <h2>
-                    Total:
-                    <span id="cartTotal">
-                        Rp 0
-                    </span>
-                </h2>
-
-            </div>
-
-            <button type="button"
-                    onclick="prosesPemesanan()"
-                    class="btn-main"
-                    style="width:100%; border-radius:8px;">
-
-                Kirim & Hubungi via WhatsApp
-
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-<section id="instagram" class="instagram-section">
-
-    <div class="instagram-card">
-
-        <div style="font-size:30px;">
-            📸
-        </div>
-
-        <h3>
-            @duaarah.coffee
-        </h3>
-
-        <p>
-            Info promo terbaru dan keseruan seduh harian kami.
-        </p>
-
-        <a href="https://www.instagram.com/duaarah.coffee"
-           target="_blank"
-           class="btn-instagram">
-
-            Kunjungi Instagram
-
-        </a>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <p>
-        &copy; 2026 Dua Arah Coffee
-    </p>
-
-    <p style="font-size:12px;">
-        #KOPIDUAARAH — dua arah, banyak tujuan.
-    </p>
-
-</footer>
-
-<a href="https://wa.me/6288210129982"
-   target="_blank"
-   class="floating-wa">
-
-    💬
-
-</a>
+<div class="container">
+
+<h3>Menu</h3>
+
+<div class="menu-card">
+<img src="americano.jpg">
+<div>
+<b>Americano</b><br>Rp 12.500
+</div>
+<button class="btn" onclick="add('Americano',12500)">+</button>
+</div>
+
+<div class="menu-card">
+<img src="aren.jpg">
+<div>
+<b>Kopi Aren</b><br>Rp 17.500
+</div>
+<button class="btn" onclick="add('Kopi Aren',17500)">+</button>
+</div>
+
+<h3>Keranjang</h3>
+<div class="cart" id="cart">Kosong</div>
+
+<h3>Data Pemesan</h3>
+<input id="nama" placeholder="Nama">
+<input id="alamat" placeholder="Alamat">
+
+<h3>Pembayaran</h3>
+<select id="payment" onchange="cekBayar()">
+<option value="cash">Cash</option>
+<option value="qris">QRIS</option>
+<option value="bca">Transfer BCA</option>
+</select>
+
+<button class="checkout" onclick="checkout()">Checkout WhatsApp</button>
+
+</div>
+
+<!-- MODAL QRIS / BCA -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3 id="title"></h3>
+<img id="img">
+<span class="close" onclick="closeModal()">Tutup</span>
+</div>
+</div>
 
 <script>
 
-function formatRupiah(angka){
+let cart=[];
 
-    return angka.toLocaleString('id-ID');
+function add(name,price){
+cart.push({name,price});
+render();
 }
 
-function updateKeranjang(){
+function render(){
+let html="";
+let total=0;
 
-    var produk1 =
-        document.getElementById('produk1').value;
-
-    var jumlah1 =
-        parseInt(document.getElementById('jumlah1').value) || 0;
-
-    var produk2 =
-        document.getElementById('produk2').value;
-
-    var jumlah2 =
-        parseInt(document.getElementById('jumlah2').value) || 0;
-
-    var extraShot =
-        document.getElementById('extrashot').checked;
-
-    var total = 0;
-
-    var harga1 = 0;
-    var harga2 = 0;
-
-    if(produk1 == "Americano"){
-        harga1 = 12500;
-    }
-
-    if(produk1 == "Kopi Aren"){
-        harga1 = 17500;
-    }
-
-    if(produk2 == "Americano"){
-        harga2 = 12500;
-    }
-
-    if(produk2 == "Kopi Aren"){
-        harga2 = 17500;
-    }
-
-    total += harga1 * jumlah1;
-    total += harga2 * jumlah2;
-
-    if(extraShot){
-        total += 2500;
-    }
-
-    document.getElementById('cartMenu1').innerHTML =
-        produk1
-        ? `Menu 1: ${produk1} x ${jumlah1}`
-        : 'Menu 1: -';
-
-    document.getElementById('cartMenu2').innerHTML =
-        produk2
-        ? `Menu 2: ${produk2} x ${jumlah2}`
-        : 'Menu 2: -';
-
-    document.getElementById('cartExtra').innerHTML =
-        extraShot
-        ? 'Extra Shot: Ya (+ Rp 2.500)'
-        : 'Extra Shot: Tidak';
-
-    document.getElementById('cartTotal').innerHTML =
-        'Rp ' + formatRupiah(total);
+if(cart.length===0){
+document.getElementById("cart").innerHTML="Kosong";
+return;
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-
-    document.getElementById('produk1')
-        .addEventListener('change', updateKeranjang);
-
-    document.getElementById('jumlah1')
-        .addEventListener('input', updateKeranjang);
-
-    document.getElementById('produk2')
-        .addEventListener('change', updateKeranjang);
-
-    document.getElementById('jumlah2')
-        .addEventListener('input', updateKeranjang);
-
-    document.getElementById('extrashot')
-        .addEventListener('change', updateKeranjang);
-
-    updateKeranjang();
+cart.forEach((item,i)=>{
+html+=`
+${item.name} - Rp ${item.price}<br>
+`;
+total+=item.price;
 });
 
-function prosesPemesanan(){
+html+=`<hr><b>Total: Rp ${total}</b>`;
+document.getElementById("cart").innerHTML=html;
+}
 
-    var nomorWA = "6288210129982";
+function cekBayar(){
+let val=document.getElementById("payment").value;
 
-    var nama =
-        document.getElementById('nama').value;
+if(val==="qris"){
+openModal("QRIS Payment","qris.jpg");
+}
 
-    var produk1 =
-        document.getElementById('produk1').value;
+if(val==="bca"){
+openModal("Transfer BCA","bca.jpg");
+}
+}
 
-    var jumlah1 =
-        document.getElementById('jumlah1').value;
+function openModal(title,img){
+document.getElementById("title").innerText=title;
+document.getElementById("img").src=img;
+document.getElementById("modal").style.display="flex";
+}
 
-    var produk2 =
-        document.getElementById('produk2').value;
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
 
-    var jumlah2 =
-        document.getElementById('jumlah2').value;
+function checkout(){
 
-    var gula =
-        document.getElementById('gula').value;
+let nama=document.getElementById("nama").value;
+let alamat=document.getElementById("alamat").value;
+let pay=document.getElementById("payment").value;
 
-    var ice =
-        document.getElementById('ice').value;
+if(cart.length===0){
+alert("Keranjang kosong!");
+return;
+}
 
-    var alamat =
-        document.getElementById('alamat').value;
+let text="Halo Dua Arah Coffee,%0A%0APesanan:%0A";
 
-    var catatan =
-        document.getElementById('catatan').value;
+cart.forEach(i=>{
+text+=`- ${i.name}%0A`;
+});
 
-    var extraShot =
-        document.getElementById('extrashot').checked
-        ? "Ya (+ Rp 2.500)"
-        : "Tidak";
+text+=`%0ANama: ${nama}%0AAlamat: ${alamat}%0APembayaran: ${pay}`;
 
-    if(!nama || !alamat || !produk1){
-
-        alert('Lengkapi formulir terlebih dahulu.');
-
-        return;
-    }
-
-    var teks = `
-Halo Dua Arah Coffee, saya ingin memesan:
-
-Nama:
-${nama}
-
-MENU 1:
-${produk1}
-Jumlah: ${jumlah1} Botol
-
-MENU 2:
-${produk2 ? produk2 : '-'}
-Jumlah: ${produk2 ? jumlah2 : '-'}
-
-Tingkat Gula:
-${gula}
-
-Tingkat Es:
-${ice}
-
-Extra Shot:
-${extraShot}
-
-Alamat:
-${alamat}
-
-Catatan:
-${catatan ? catatan : '-'}
-
-Terima kasih.
-`;
-
-    var url =
-        "https://wa.me/" +
-        nomorWA +
-        "?text=" +
-        encodeURIComponent(teks);
-
-    window.open(url, '_blank');
+window.open("https://wa.me/6288210129982?text="+text);
 }
 
 </script>
