@@ -25,25 +25,47 @@ body{
 
 /* HEADER */
 header{
-    height:220px;
+    height:260px;
     background:url("coffee-bg.jpg") center/cover;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
     color:white;
+    text-align:center;
+    padding:20px;
 }
 
 header::before{
     content:"";
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.55);
+}
+
+.header-content{
+    position:relative;
+    z-index:1;
+    max-width:600px;
 }
 
 header h1{
-    position:relative;
-    font-size:32px;
+    font-size:38px;
+    letter-spacing:1px;
+    margin-bottom:10px;
+}
+
+.tagline{
+    font-size:16px;
+    font-style:italic;
+    opacity:0.9;
+    margin-bottom:8px;
+}
+
+.quote{
+    font-size:13px;
+    opacity:0.8;
+    line-height:1.5;
 }
 
 /* MENU */
@@ -168,7 +190,11 @@ input,select{
 <body>
 
 <header>
-    <h1>Dua Arah Coffee ☕</h1>
+    <div class="header-content">
+        <h1>Dua Arah Coffee ☕</h1>
+        <p class="tagline">Two Ways, One Perfect Taste</p>
+        <p class="quote">“Kopi bukan sekadar minuman, tapi cerita dalam setiap tegukan.”</p>
+    </div>
 </header>
 
 <div class="container">
@@ -203,7 +229,6 @@ input,select{
 <input id="nama" placeholder="Nama">
 <input id="alamat" placeholder="Alamat">
 
-<!-- ✅ INPUT BARU -->
 <input id="catatan" placeholder="Catatan (extra shot / less sugar / dll)">
 
 <select id="payment" onchange="paymentCheck()">
@@ -229,7 +254,7 @@ input,select{
 
 </div>
 
-<!-- MODAL PAYMENT -->
+<!-- MODAL -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <h3 id="title"></h3>
