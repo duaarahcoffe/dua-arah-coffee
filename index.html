@@ -1,329 +1,133 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dua Arah Coffee</title>
+let cart = [];
 
-<style>
-:root{
-    --primary:#4A3525;
-    --accent:#8C6A50;
-    --bg:#FAF6F0;
-}
+function add(name, price) {
+    let item = cart.find(i => i.name === name);
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+    if (item) {
+        item.qty += 1;
+    } else {
+        cart.push({
+            name,
+            price,
+            qty: 1,
+            note: ""
+        });
+    }
 
-body{
-    background:var(--bg);
-}
-
-/* HEADER */
-header{
-    height:220px;
-    background:url("coffee-bg.jpg") center/cover;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-}
-
-header::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.5);
-}
-
-header h1{
-    position:relative;
-    font-size:32px;
-}
-
-/* MENU */
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px;
-}
-
-.menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
-
-.card img{
-    width:100%;
-    height:160px;
-    object-fit:cover;
-}
-
-.card-body{
-    padding:15px;
-}
-
-.price{
-    color:var(--accent);
-    font-weight:bold;
-    margin:5px 0;
-}
-
-.btn{
-    width:100%;
-    padding:10px;
-    border:none;
-    background:var(--primary);
-    color:white;
-    cursor:pointer;
-    border-radius:8px;
-}
-
-/* CART BUTTON */
-.cart-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:var(--primary);
-    color:white;
-    font-size:24px;
-    border:none;
-    cursor:pointer;
-}
-
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    top:0;
-    right:-350px;
-    width:320px;
-    height:100%;
-    background:white;
-    box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-    padding:20px;
-    transition:0.3s;
-    overflow:auto;
-}
-
-.sidebar.active{
-    right:0;
-}
-
-.close{
-    color:red;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* FORM */
-input,select{
-    width:100%;
-    padding:10px;
-    margin:5px 0 10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    width:300px;
-    text-align:center;
-}
-
-.modal img{
-    width:100%;
-    border-radius:10px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>Dua Arah Coffee ☕</h1>
-</header>
-
-<div class="container">
-
-<h2>Menu</h2>
-
-<div class="menu">
-
-<div class="card">
-    <img src="americano.jpg">
-    <div class="card-body">
-        <h3>Americano</h3>
-        <div class="price">Rp 12.500</div>
-        <button class="btn" onclick="add('Americano',12500)">Tambah</button>
-    </div>
-</div>
-
-<div class="card">
-    <img src="aren.jpg">
-    <div class="card-body">
-        <h3>Kopi Aren</h3>
-        <div class="price">Rp 17.500</div>
-        <button class="btn" onclick="add('Kopi Aren',17500)">Tambah</button>
-    </div>
-</div>
-
-</div>
-
-<br>
-
-<h2>Data Pemesan</h2>
-<input id="nama" placeholder="Nama">
-<input id="alamat" placeholder="Alamat">
-
-<!-- ✅ INPUT BARU -->
-<input id="catatan" placeholder="Catatan (extra shot / less sugar / dll)">
-
-<select id="payment" onchange="paymentCheck()">
-    <option value="cash">Cash</option>
-    <option value="qris">QRIS</option>
-    <option value="bca">Transfer BCA</option>
-</select>
-
-<button class="btn" onclick="checkout()">Checkout WhatsApp</button>
-
-</div>
-
-<!-- CART BUTTON -->
-<button class="cart-btn" onclick="toggleCart()">🛒</button>
-
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-
-<span class="close" onclick="toggleCart()">Tutup ✖</span>
-
-<h3>Keranjang</h3>
-<div id="cart">Kosong</div>
-
-</div>
-
-<!-- MODAL PAYMENT -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h3 id="title"></h3>
-        <img id="img">
-        <br><br>
-        <button onclick="closeModal()">Tutup</button>
-    </div>
-</div>
-
-<script>
-
-let cart=[];
-
-function add(name,price){
-    cart.push({name,price});
     render();
 }
 
-function render(){
-    let html="";
-    let total=0;
+function decrease(name) {
+    let item = cart.find(i => i.name === name);
 
-    if(cart.length===0){
-        document.getElementById("cart").innerHTML="Kosong";
+    if (!item) return;
+
+    item.qty -= 1;
+
+    if (item.qty <= 0) {
+        cart = cart.filter(i => i.name !== name);
+    }
+
+    render();
+}
+
+function updateNote(name, value) {
+    let item = cart.find(i => i.name === name);
+    if (item) {
+        item.note = value;
+    }
+}
+
+function render() {
+    let html = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+        document.getElementById("cart").innerHTML = "Kosong";
         return;
     }
 
-    cart.forEach(i=>{
-        html+=`${i.name} - Rp ${i.price.toLocaleString('id-ID')}<br>`;
-        total+=i.price;
+    cart.forEach(i => {
+        total += i.price * i.qty;
+
+        html += `
+        <div style="margin-bottom:10px;">
+            <b>${i.name}</b><br>
+            Rp ${i.price.toLocaleString('id-ID')} x ${i.qty}<br>
+
+            <button onclick="decrease('${i.name}')">-</button>
+            <button onclick="add('${i.name}',${i.price})">+</button>
+
+            <br>
+
+            <input 
+                placeholder="Catatan (extra shot, dll)"
+                value="${i.note}"
+                onchange="updateNote('${i.name}', this.value)"
+                style="width:100%;margin-top:5px;padding:5px;"
+            >
+
+        </div>
+        <hr>
+        `;
     });
 
-    html+=`<hr><b>Total: Rp ${total.toLocaleString('id-ID')}</b>`;
-    document.getElementById("cart").innerHTML=html;
+    html += `<b>Total: Rp ${total.toLocaleString('id-ID')}</b>`;
+
+    document.getElementById("cart").innerHTML = html;
 }
 
-function toggleCart(){
+function toggleCart() {
     document.getElementById("sidebar").classList.toggle("active");
 }
 
-function paymentCheck(){
-    let val=document.getElementById("payment").value;
+function paymentCheck() {
+    let val = document.getElementById("payment").value;
 
-    if(val==="qris"){
-        openModal("QRIS Payment","qris.jpg");
+    if (val === "qris") {
+        openModal("QRIS Payment", "qris.jpg");
     }
 
-    if(val==="bca"){
-        openModal("Transfer BCA","bca.jpg");
+    if (val === "bca") {
+        openModal("Transfer BCA", "bca.jpg");
     }
 }
 
-function openModal(title,img){
-    document.getElementById("title").innerText=title;
-    document.getElementById("img").src=img;
-    document.getElementById("modal").style.display="flex";
+function openModal(title, img) {
+    document.getElementById("title").innerText = title;
+    document.getElementById("img").src = img;
+    document.getElementById("modal").style.display = "flex";
 }
 
-function closeModal(){
-    document.getElementById("modal").style.display="none";
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
 }
 
-function checkout(){
+function checkout() {
 
-    let nama=document.getElementById("nama").value;
-    let alamat=document.getElementById("alamat").value;
-    let catatan=document.getElementById("catatan").value;
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
 
-    if(cart.length===0){
+    if (cart.length === 0) {
         alert("Keranjang kosong");
         return;
     }
 
-    if(!nama||!alamat){
+    if (!nama || !alamat) {
         alert("Isi data lengkap");
         return;
     }
 
-    let text="Halo Dua Arah Coffee,%0A%0A";
+    let text = "Halo Dua Arah Coffee,%0A%0A";
 
-    cart.forEach(i=>{
-        text+=`- ${i.name}%0A`;
+    cart.forEach(i => {
+        text += `- ${i.name} x${i.qty}%0A`;
+        if (i.note) {
+            text += `  Catatan: ${i.note}%0A`;
+        }
     });
 
-    text+=`%0ANama: ${nama}%0AAlamat: ${alamat}`;
+    text += `%0ANama: ${nama}%0AAlamat: ${alamat}`;
 
-    if(catatan){
-        text+=`%0ACatatan: ${catatan}`;
-    }
-
-    window.open("https://wa.me/6288210129982?text="+text);
+    window.open("https://wa.me/6288210129982?text=" + text);
 }
-
-</script>
-
-</body>
-</html>
