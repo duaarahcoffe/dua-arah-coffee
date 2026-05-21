@@ -162,6 +162,32 @@
             margin:10px 0;
         }
 
+        .qty-box{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:15px;
+            margin-top:20px;
+        }
+
+        .qty-box button{
+            width:40px;
+            height:40px;
+            border:none;
+            border-radius:50%;
+            background:var(--accent-color);
+            color:white;
+            font-size:22px;
+            cursor:pointer;
+        }
+
+        .qty-box span{
+            font-size:22px;
+            font-weight:bold;
+            min-width:30px;
+            text-align:center;
+        }
+
         .order-section{
             background:white;
             padding:40px;
@@ -223,16 +249,6 @@
         .cart-item h4{
             margin-bottom:10px;
             color:var(--primary-color);
-        }
-
-        .btn-delete{
-            background:red;
-            color:white;
-            border:none;
-            padding:8px 12px;
-            border-radius:8px;
-            cursor:pointer;
-            margin-top:10px;
         }
 
         .instagram-section{
@@ -355,6 +371,8 @@
 
 </section>
 
+<!-- MENU -->
+
 <section id="menu"
          class="container">
 
@@ -363,6 +381,8 @@
     </h2>
 
     <div class="menu-grid">
+
+        <!-- AMERICANO -->
 
         <div class="menu-card">
 
@@ -382,7 +402,25 @@
                 rasa kuat dan segar.
             </p>
 
+            <div class="qty-box">
+
+                <button onclick="kurangQty('americano')">
+                    -
+                </button>
+
+                <span id="qty-americano">
+                    0
+                </span>
+
+                <button onclick="tambahQty('americano')">
+                    +
+                </button>
+
+            </div>
+
         </div>
+
+        <!-- KOPI AREN -->
 
         <div class="menu-card">
 
@@ -402,17 +440,35 @@
                 susu dan gula aren.
             </p>
 
+            <div class="qty-box">
+
+                <button onclick="kurangQty('aren')">
+                    -
+                </button>
+
+                <span id="qty-aren">
+                    0
+                </span>
+
+                <button onclick="tambahQty('aren')">
+                    +
+                </button>
+
+            </div>
+
         </div>
 
     </div>
 
 </section>
 
+<!-- CHECKOUT -->
+
 <section id="pesan"
          class="container">
 
     <h2 class="section-title">
-        Formulir Pemesanan
+        Checkout Pesanan
     </h2>
 
     <div class="order-section">
@@ -429,44 +485,7 @@
 
         </div>
 
-        <div class="form-group">
-
-            <label>
-                Pilih Menu
-            </label>
-
-            <select id="produk">
-
-                <option value="">
-                    -- Pilih Menu --
-                </option>
-
-                <option value="Americano">
-                    Americano - Rp 12.500
-                </option>
-
-                <option value="Kopi Aren">
-                    Kopi Aren - Rp 17.500
-                </option>
-
-            </select>
-
-        </div>
-
         <div class="form-row">
-
-            <div class="form-group">
-
-                <label>
-                    Jumlah
-                </label>
-
-                <input type="number"
-                       id="jumlah"
-                       min="1"
-                       value="1">
-
-            </div>
 
             <div class="form-group">
 
@@ -492,10 +511,6 @@
 
             </div>
 
-        </div>
-
-        <div class="form-row">
-
             <div class="form-group">
 
                 <label>
@@ -520,33 +535,27 @@
 
             </div>
 
-            <div class="form-group">
+        </div>
 
-                <label>
-                    Extra Shot
-                </label>
+        <div class="form-group">
 
-                <div class="checkbox-group">
+            <label>
+                Extra Shot
+            </label>
 
-                    <input type="checkbox"
-                           id="extrashot">
+            <div class="checkbox-group">
 
-                    Extra Shot (+ Rp 2.500)
+                <input type="checkbox"
+                       id="extrashot"
+                       onchange="renderKeranjang()">
 
-                </div>
+                Extra Shot (+ Rp 2.500)
 
             </div>
 
         </div>
 
-        <button onclick="tambahKeranjang()"
-                class="btn-main"
-                style="width:100%;
-                margin-bottom:25px;">
-
-            ➕ Tambah ke Keranjang
-
-        </button>
+        <!-- KERANJANG -->
 
         <div class="cart-box">
 
@@ -575,6 +584,8 @@
 
         </div>
 
+        <!-- ALAMAT -->
+
         <div class="form-group"
              style="margin-top:25px;">
 
@@ -600,8 +611,7 @@
 
         <button onclick="checkoutWA()"
                 class="btn-main"
-                style="width:100%;
-                border-radius:8px;">
+                style="width:100%;">
 
             📲 Checkout via WhatsApp
 
@@ -610,6 +620,8 @@
     </div>
 
 </section>
+
+<!-- INSTAGRAM -->
 
 <section id="instagram"
          class="instagram-section">
@@ -664,154 +676,150 @@
 
 <script>
 
-let keranjang = [];
+let keranjang = {
+
+    americano:0,
+    aren:0
+};
+
+function tambahQty(menu){
+
+    keranjang[menu]++;
+
+    updateQty();
+}
+
+function kurangQty(menu){
+
+    if(keranjang[menu] > 0){
+
+        keranjang[menu]--;
+    }
+
+    updateQty();
+}
+
+function updateQty(){
+
+    document.getElementById(
+    'qty-americano').innerHTML =
+    keranjang.americano;
+
+    document.getElementById(
+    'qty-aren').innerHTML =
+    keranjang.aren;
+
+    renderKeranjang();
+}
 
 function formatRupiah(angka){
 
     return angka.toLocaleString('id-ID');
 }
 
-function tambahKeranjang(){
-
-    let produk =
-        document.getElementById('produk').value;
-
-    let jumlah =
-        parseInt(
-        document.getElementById('jumlah').value);
-
-    let gula =
-        document.getElementById('gula').value;
-
-    let ice =
-        document.getElementById('ice').value;
-
-    let extra =
-        document.getElementById('extrashot').checked;
-
-    if(!produk){
-
-        alert(
-        'Pilih menu terlebih dahulu.');
-
-        return;
-    }
-
-    let harga = 0;
-
-    if(produk == "Americano"){
-        harga = 12500;
-    }
-
-    if(produk == "Kopi Aren"){
-        harga = 17500;
-    }
-
-    let total = harga * jumlah;
-
-    if(extra){
-        total += 2500;
-    }
-
-    keranjang.push({
-
-        produk,
-        jumlah,
-        gula,
-        ice,
-        extra,
-        total
-    });
-
-    renderKeranjang();
-}
-
 function renderKeranjang(){
 
     let cart =
-        document.getElementById('cartItems');
+    document.getElementById('cartItems');
 
-    let totalSemua = 0;
+    let extraShot =
+    document.getElementById('extrashot').checked;
 
-    if(keranjang.length == 0){
+    let total = 0;
 
-        cart.innerHTML =
-        '<p>Belum ada pesanan.</p>';
+    let html = '';
 
-        document.getElementById(
-        'cartTotal').innerHTML = 'Rp 0';
+    if(keranjang.americano > 0){
 
-        return;
-    }
+        let subtotal =
+        keranjang.americano * 12500;
 
-    cart.innerHTML = '';
+        total += subtotal;
 
-    keranjang.forEach((item,index)=>{
-
-        totalSemua += item.total;
-
-        cart.innerHTML += `
+        html += `
 
         <div class="cart-item">
 
             <h4>
-                ${item.produk}
+                Americano
             </h4>
 
             <p>
-                Jumlah:
-                ${item.jumlah}
-            </p>
-
-            <p>
-                Sugar:
-                ${item.gula}
-            </p>
-
-            <p>
-                Ice:
-                ${item.ice}
-            </p>
-
-            <p>
-                Extra Shot:
-                ${item.extra ? 'Ya' : 'Tidak'}
+                ${keranjang.americano} x Rp 12.500
             </p>
 
             <strong>
-                Rp ${formatRupiah(item.total)}
+                Rp ${formatRupiah(subtotal)}
             </strong>
-
-            <br>
-
-            <button class="btn-delete"
-                    onclick="hapusItem(${index})">
-
-                Hapus
-
-            </button>
 
         </div>
 
         `;
-    });
+    }
+
+    if(keranjang.aren > 0){
+
+        let subtotal =
+        keranjang.aren * 17500;
+
+        total += subtotal;
+
+        html += `
+
+        <div class="cart-item">
+
+            <h4>
+                Kopi Aren
+            </h4>
+
+            <p>
+                ${keranjang.aren} x Rp 17.500
+            </p>
+
+            <strong>
+                Rp ${formatRupiah(subtotal)}
+            </strong>
+
+        </div>
+
+        `;
+    }
+
+    if(extraShot){
+
+        total += 2500;
+
+        html += `
+
+        <div class="cart-item">
+
+            <h4>
+                Extra Shot
+            </h4>
+
+            <strong>
+                Rp 2.500
+            </strong>
+
+        </div>
+
+        `;
+    }
+
+    if(html == ''){
+
+        html =
+        '<p>Belum ada pesanan.</p>';
+    }
+
+    cart.innerHTML = html;
 
     document.getElementById(
     'cartTotal').innerHTML =
-    'Rp ' + formatRupiah(totalSemua);
-}
-
-function hapusItem(index){
-
-    keranjang.splice(index,1);
-
-    renderKeranjang();
+    'Rp ' + formatRupiah(total);
 }
 
 function checkoutWA(){
-
-    let nomorWA =
-    "6288210129982";
 
     let nama =
     document.getElementById('nama').value;
@@ -822,6 +830,15 @@ function checkoutWA(){
     let catatan =
     document.getElementById('catatan').value;
 
+    let gula =
+    document.getElementById('gula').value;
+
+    let ice =
+    document.getElementById('ice').value;
+
+    let extraShot =
+    document.getElementById('extrashot').checked;
+
     if(!nama || !alamat){
 
         alert(
@@ -830,7 +847,10 @@ function checkoutWA(){
         return;
     }
 
-    if(keranjang.length == 0){
+    if(
+        keranjang.americano == 0 &&
+        keranjang.aren == 0
+    ){
 
         alert(
         'Keranjang masih kosong.');
@@ -846,39 +866,63 @@ ${nama}
 
 ====================`;
 
-    let totalSemua = 0;
+    let total = 0;
 
-    keranjang.forEach((item,index)=>{
+    if(keranjang.americano > 0){
 
-        totalSemua += item.total;
+        let subtotal =
+        keranjang.americano * 12500;
+
+        total += subtotal;
 
         pesan += `
 
-MENU ${index + 1}
-${item.produk}
+Americano
+${keranjang.americano} x 12.500
+Subtotal:
+Rp ${formatRupiah(subtotal)}
+`;
+    }
 
-Jumlah:
-${item.jumlah}
+    if(keranjang.aren > 0){
 
-Sugar:
-${item.gula}
+        let subtotal =
+        keranjang.aren * 17500;
 
-Ice:
-${item.ice}
+        total += subtotal;
+
+        pesan += `
+
+Kopi Aren
+${keranjang.aren} x 17.500
+Subtotal:
+Rp ${formatRupiah(subtotal)}
+`;
+    }
+
+    if(extraShot){
+
+        total += 2500;
+
+        pesan += `
 
 Extra Shot:
-${item.extra ? 'Ya' : 'Tidak'}
-
-Subtotal:
-Rp ${formatRupiah(item.total)}
-
---------------------`;
-    });
+Rp 2.500
+`;
+    }
 
     pesan += `
 
+====================
+
+Tingkat Gula:
+${gula}
+
+Tingkat Es:
+${ice}
+
 TOTAL:
-Rp ${formatRupiah(totalSemua)}
+Rp ${formatRupiah(total)}
 
 Alamat:
 ${alamat}
@@ -890,9 +934,7 @@ Terima kasih.
 `;
 
     let url =
-    "https://wa.me/" +
-    nomorWA +
-    "?text=" +
+    "https://wa.me/6288210129982?text=" +
     encodeURIComponent(pesan);
 
     window.open(url,'_blank');
