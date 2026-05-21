@@ -175,21 +175,13 @@
             transform: translateY(-5px);
         }
 
-        .botol-visual {
-            background: var(--primary-color);
-            width: 140px;
-            height: 220px;
+        .menu-img {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            font-weight: bold;
-            padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            font-size: 14px;
         }
 
         .menu-title {
@@ -352,16 +344,16 @@
             <div class="menu-grid">
                 
                 <div class="menu-card">
-                    <div class="botol-visual">[ Botol 200ml ]<br><br>Americano</div>
+                    <img src="americano.jpg" alt="Americano Dua Arah" class="menu-img">
                     <div>
                         <h3 class="menu-title">Americano</h3>
                         <div class="menu-price">Rp 12.500</div>
-                        <p class="menu-desc">Espresso murni pilihan dikombinasikan dengan air murni. Segar, kuat, dan pas untuk penambah energi.</p>
+                        <p class="menu-desc">Espresso murni pilihan dikombinasikan dengan air murni. Segar, kuat, dan pas untuk penambah energi harian.</p>
                     </div>
                 </div>
 
                 <div class="menu-card">
-                    <div class="botol-visual">[ Botol 200ml ]<br><br>Kopi Aren</div>
+                    <img src="aren.jpg" alt="Kopi Aren Dua Arah" class="menu-img">
                     <div>
                         <h3 class="menu-title">Kopi Aren</h3>
                         <div class="menu-price">Rp 17.500</div>
@@ -431,7 +423,7 @@
 
                 <div class="form-group">
                     <label for="catatan">Catatan Tambahan (Opsional)</label>
-                    <textarea id="catatan" rows="2" placeholder="Contoh: Less sugar / es dipisah / patokan dekat gedung olahraga..."></textarea>
+                    <textarea id="catatan" rows="2" placeholder="Contoh: es dipisah / patokan dekat pagar hitam..."></textarea>
                 </div>
                 
                 <button type="button" onclick="prosesPemesanan()" class="btn-main" style="width: 100%; border-radius: 8px;">
@@ -460,13 +452,9 @@
 
     <script>
         function prosesPemesanan() {
-            // =========================================================================
-            // PENTING: Silakan ganti nomor di bawah dengan nomor WhatsApp bisnis Anda!
-            // Gunakan kode negara "62" di depan (Contoh: "6281234567890")
-            // =========================================================================
-            var nomorWA = "6281234567890"; 
+            // Ubah dengan nomor WhatsApp Bisnis Anda (Gunakan kode negara 62 di depan)
+            var nomorWA = "6288210129982"; 
             
-            // Ambil data dari elemen formulir HTML
             var nama = document.getElementById('nama').value;
             var produk = document.getElementById('produk').value;
             var gula = document.getElementById('gula').value;
@@ -476,17 +464,14 @@
             var catatan = document.getElementById('catatan').value;
             var extraShotChecked = document.getElementById('extrashot').checked;
             
-            // Validasi data pelengkap kustomisasi teks
             var extraTxt = extraShotChecked ? "Ya (+ Rp 2.500)" : "Tidak";
             var catatanTxt = catatan ? catatan : "-";
 
-            // Proteksi agar form wajib diisi (kecuali catatan)
             if(!nama || !alamat || !jumlah) {
                 alert('Silakan lengkapi seluruh kolom formulir terlebih dahulu.');
                 return;
             }
 
-            // Memproses penyusunan teks otomatis untuk dikirim ke chat WhatsApp bisnis
             var teks = "Halo Dua Arah Coffee, saya ingin memesan:%0A%0A" +
                        "*Nama Pelanggan:* " + encodeURIComponent(nama) + "%0A" +
                        "*Menu Kopi:* " + encodeURIComponent(produk) + " - Ukuran 200ml%0A" +
@@ -498,7 +483,6 @@
                        "*Catatan Tambahan:* " + encodeURIComponent(catatanTxt) + "%0A%0A" +
                        "Mohon segera dikalkulasikan total harganya ya, terima kasih!";
 
-            // Eksekusi mengalihkan halaman langsung ke aplikasi WhatsApp chat
             var urlWA = "https://wa.me/" + nomorWA + "?text=" + teks;
             window.open(urlWA, '_blank');
         }
