@@ -147,86 +147,68 @@
             margin: 10px auto 0 auto;
         }
 
-        /* Keunggulan Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 12px;
-            color: var(--primary-color);
-        }
-
         /* Menu Section */
         .product-section {
             background-color: var(--cream);
         }
 
-        .product-flex {
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            gap: 40px;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        @media (min-width: 768px) {
-            .product-flex {
-                flex-direction: row;
-                justify-content: space-around;
-            }
+        .menu-card:hover {
+            transform: translateY(-5px);
         }
 
-        .product-info {
-            max-width: 500px;
-        }
-
-        .product-badge {
-            background-color: var(--primary-color);
+        .botol-visual {
+            background: var(--primary-color);
+            width: 140px;
+            height: 220px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             font-size: 14px;
-            display: inline-block;
+        }
+
+        .menu-title {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .menu-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--accent-color);
             margin-bottom: 15px;
         }
 
-        .product-info h3 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .ingredients {
-            background: var(--bg-light);
-            padding: 15px;
-            border-left: 4px solid var(--accent-color);
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
+        .menu-desc {
+            font-size: 14px;
+            color: #665544;
+            margin-bottom: 15px;
         }
 
         /* Order Form Section */
@@ -240,6 +222,13 @@
         }
 
         .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
@@ -257,6 +246,7 @@
             border-radius: 8px;
             font-size: 16px;
             background-color: var(--bg-light);
+            resize: vertical;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
@@ -265,12 +255,67 @@
             box-shadow: 0 0 5px rgba(140, 106, 80, 0.3);
         }
 
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--bg-light);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-color);
+        }
+
+        .checkbox-group input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        /* Kolom Instagram */
+        .instagram-section {
+            background-color: var(--cream);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #D0C5BA;
+        }
+
+        .instagram-card {
+            background: white;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .instagram-username {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 10px 0 15px 0;
+            display: block;
+        }
+
+        .btn-instagram {
+            display: inline-block;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 20px;
+            font-size: 15px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-instagram:hover {
+            opacity: 0.9;
+        }
+
         footer {
             background-color: var(--secondary-color);
             color: var(--text-light);
             text-align: center;
             padding: 30px 20px;
-            margin-top: 60px;
             font-size: 14px;
         }
 
@@ -288,9 +333,9 @@
                 <span>COFFEE</span>
             </div>
             <nav>
-                <a href="#keunggulan">Keunggulan</a>
-                <a href="#menu">Menu</a>
-                <a href="#pesan">Pesan</a>
+                <a href="#menu">Daftar Menu</a>
+                <a href="#pesan">Pesan Sekarang</a>
+                <a href="#instagram">Instagram</a>
             </nav>
         </div>
     </header>
@@ -301,48 +346,29 @@
         <a href="#pesan" class="btn-main">Pesan Sekarang</a>
     </section>
 
-    <section id="keunggulan" class="container">
-        <h2 class="section-title">Kenapa Dua Arah Coffee?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🌾</div>
-                <h3>Biji Berkualitas</h3>
-                <p>Dipilih dari petani lokal terbaik untuk menghasilkan cita rasa kopi yang seimbang dan nikmat.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">❄️</div>
-                <h3>Disediakan Dingin</h3>
-                <p>Nikmat disajikan dingin kapan pun, menjaga kesegaran kopi susu di setiap aktivitas Anda.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🍼</div>
-                <h3>Praktis &amp; Siap Minum</h3>
-                <p>Teman perjalananmu, ke mana pun arahmu. Kemasan botol aman yang siap menemani hari Anda.</p>
-            </div>
-        </div>
-    </section>
-
     <section id="menu" class="product-section">
         <div class="container">
-            <h2 class="section-title">Menu Utama</h2>
-            <div class="product-flex">
-                <div style="background: var(--primary-color); width: 220px; height: 320px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; font-weight: bold; padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
-                    [ Botol 250ml ]<br><br>Dua Arah Coffee<br>Kopi Susu
-                </div>
-                <div class="product-info">
-                    <span class="product-badge">Rasa Seimbang</span>
-                    <h3>Kopi Susu Gula Aren (250 ml)</h3>
-                    <p>Kombinasi espresso premium, susu segar pilihan, dan manis murni dari gula aren asli.</p>
-                    
-                    <div class="ingredients">
-                        <strong>Komposisi:</strong><br>
-                        Susu Segar, Kopi, Gula Aren.
+            <h2 class="section-title">Daftar Menu (200 ml)</h2>
+            <div class="menu-grid">
+                
+                <div class="menu-card">
+                    <div class="botol-visual">[ Botol 200ml ]<br><br>Americano</div>
+                    <div>
+                        <h3 class="menu-title">Americano</h3>
+                        <div class="menu-price">Rp 12.500</div>
+                        <p class="menu-desc">Espresso murni pilihan dikombinasikan dengan air murni. Segar, kuat, dan pas untuk penambah energi.</p>
                     </div>
-                    
-                    <p style="font-size: 14px; color: #665544; font-style: italic; margin-bottom: 20px;">
-                        *Kocok dahulu sebelum diminum. Simpan di lemari es (2-4°C).
-                    </p>
                 </div>
+
+                <div class="menu-card">
+                    <div class="botol-visual">[ Botol 200ml ]<br><br>Kopi Aren</div>
+                    <div>
+                        <h3 class="menu-title">Kopi Aren</h3>
+                        <div class="menu-price">Rp 17.500</div>
+                        <p class="menu-desc">Perpaduan esensial espresso premium, kelembutan susu segar, serta legitnya rasa gula aren asli pilihan.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -350,30 +376,80 @@
     <section id="pesan" class="container">
         <h2 class="section-title">Formulir Pemesanan</h2>
         <div class="order-section">
-            <form id="orderForm" action="https://formspree.io/f/your_id_here" method="POST">
+            <form id="orderForm">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" name="Nama" id="nama" placeholder="Masukkan nama Anda" required>
+                    <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
                 </div>
+                
                 <div class="form-group">
-                    <label for="produk">Pilih Produk</label>
-                    <select name="Produk" id="produk" required>
-                        <option value="Kopi Susu Gula Aren 250ml">Kopi Susu Gula Aren (250 ml)</option>
+                    <label for="produk">Pilih Menu (200 ml)</label>
+                    <select id="produk" required>
+                        <option value="Americano (Rp 12.500)">Americano — Rp 12.500</option>
+                        <option value="Kopi Aren (Rp 17.500)">Kopi Aren — Rp 17.500</option>
                     </select>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="gula">Tingkat Gula (Sugar)</label>
+                        <select id="gula" required>
+                            <option value="Normal Sugar">Normal Sugar</option>
+                            <option value="Less Sugar">Less Sugar</option>
+                            <option value="No Sugar">No Sugar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ice">Tingkat Es (Ice)</label>
+                        <select id="ice" required>
+                            <option value="Normal Ice">Normal Ice</option>
+                            <option value="Less Ice">Less Ice</option>
+                            <option value="No Ice (Dingin Tanpa Es)">No Ice</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tambahan Kustomisasi</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="extrashot" value="Ya">
+                        <label for="extrashot" style="margin-bottom: 0; font-weight: normal; cursor: pointer;">
+                            <strong>Extra Shot Espresso</strong> (+ Rp 2.500)
+                        </label>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="jumlah">Jumlah Botol</label>
-                    <input type="number" name="Jumlah" id="jumlah" min="1" value="1" required>
+                    <input type="number" id="jumlah" min="1" value="1" required>
                 </div>
+                
                 <div class="form-group">
                     <label for="alamat">Alamat Pengiriman</label>
-                    <textarea name="Alamat" id="alamat" rows="3" placeholder="Alamat lengkap pengiriman..." required></textarea>
+                    <textarea id="alamat" rows="3" placeholder="Alamat lengkap pengiriman..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="catatan">Catatan Tambahan (Opsional)</label>
+                    <textarea id="catatan" rows="2" placeholder="Contoh: Less sugar / es dipisah / patokan dekat gedung olahraga..."></textarea>
                 </div>
                 
                 <button type="button" onclick="prosesPemesanan()" class="btn-main" style="width: 100%; border-radius: 8px;">
                     Kirim &amp; Hubungi via WhatsApp
                 </button>
             </form>
+        </div>
+    </section>
+
+    <section id="instagram" class="instagram-section">
+        <div class="instagram-card">
+            <div style="font-size: 30px;">📸</div>
+            <p style="color: #665544; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Ikuti Cerita Kami</p>
+            <span class="instagram-username">@duaarah.coffee</span>
+            <p style="font-size: 14px; margin-bottom: 20px; color: #555;">Dapatkan info promo terbaru, rilis varian menu, dan keseruan seduh harian kami lewat Instagram resmi.</p>
+            <a href="https://www.instagram.com/duaarah.coffee" target="_blank" class="btn-instagram">
+                Kunjungi Instagram
+            </a>
         </div>
     </section>
 
@@ -384,48 +460,47 @@
 
     <script>
         function prosesPemesanan() {
-            // 1. PENTING: Ganti dengan nomor WhatsApp bisnis Anda (gunakan kode negara 62 di depan)
+            // =========================================================================
+            // PENTING: Silakan ganti nomor di bawah dengan nomor WhatsApp bisnis Anda!
+            // Gunakan kode negara "62" di depan (Contoh: "6281234567890")
+            // =========================================================================
             var nomorWA = "6288210129982"; 
             
+            // Ambil data dari elemen formulir HTML
             var nama = document.getElementById('nama').value;
             var produk = document.getElementById('produk').value;
+            var gula = document.getElementById('gula').value;
+            var ice = document.getElementById('ice').value;
             var jumlah = document.getElementById('jumlah').value;
             var alamat = document.getElementById('alamat').value;
+            var catatan = document.getElementById('catatan').value;
+            var extraShotChecked = document.getElementById('extrashot').checked;
+            
+            // Validasi data pelengkap kustomisasi teks
+            var extraTxt = extraShotChecked ? "Ya (+ Rp 2.500)" : "Tidak";
+            var catatanTxt = catatan ? catatan : "-";
 
+            // Proteksi agar form wajib diisi (kecuali catatan)
             if(!nama || !alamat || !jumlah) {
                 alert('Silakan lengkapi seluruh kolom formulir terlebih dahulu.');
                 return;
             }
 
-            // 2. Format Pesanan Teks untuk WhatsApp
+            // Memproses penyusunan teks otomatis untuk dikirim ke chat WhatsApp bisnis
             var teks = "Halo Dua Arah Coffee, saya ingin memesan:%0A%0A" +
-                       "*Nama:* " + encodeURIComponent(nama) + "%0A" +
-                       "*Produk:* " + encodeURIComponent(produk) + "%0A" +
-                       "*Jumlah:* " + encodeURIComponent(jumlah) + " Botol%0A" +
-                       "*Alamat:* " + encodeURIComponent(alamat) + "%0A%0A" +
-                       "Mohon segera dikonfirmasi totalannya, terima kasih!";
+                       "*Nama Pelanggan:* " + encodeURIComponent(nama) + "%0A" +
+                       "*Menu Kopi:* " + encodeURIComponent(produk) + " - Ukuran 200ml%0A" +
+                       "*Tingkat Gula (Sugar):* " + encodeURIComponent(gula) + "%0A" +
+                       "*Tingkat Es (Ice):* " + encodeURIComponent(ice) + "%0A" +
+                       "*Extra Shot Espresso:* " + encodeURIComponent(extraTxt) + "%0A" +
+                       "*Jumlah Pemesanan:* " + encodeURIComponent(jumlah) + " Botol%0A" +
+                       "*Alamat Pengiriman:* " + encodeURIComponent(alamat) + "%0A" +
+                       "*Catatan Tambahan:* " + encodeURIComponent(catatanTxt) + "%0A%0A" +
+                       "Mohon segera dikalkulasikan total harganya ya, terima kasih!";
 
+            // Eksekusi mengalihkan halaman langsung ke aplikasi WhatsApp chat
             var urlWA = "https://wa.me/" + nomorWA + "?text=" + teks;
-
-            // 3. OPSI CODESPREE DATABASE (Opsional): 
-            // Jika Anda sudah mengisi ID Formspree di tag <form>, baris di bawah ini akan mengirim data ke email terlebih dahulu
-            var form = document.getElementById('orderForm');
-            if (form.getAttribute('action') !== 'https://formspree.io/f/your_id_here') {
-                fetch(form.action, {
-                    method: form.method,
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                }).then(response => {
-                    // Setelah sukses masuk email, langsung buka WhatsApp
-                    window.open(urlWA, '_blank');
-                }).catch(error => {
-                    // Jika terjadi gangguan koneksi email, tetap buka WhatsApp agar penjualan tidak batal
-                    window.open(urlWA, '_blank');
-                });
-            } else {
-                // Jika belum setup Formspree, langsung dialihkan ke WhatsApp saja
-                window.open(urlWA, '_blank');
-            }
+            window.open(urlWA, '_blank');
         }
     </script>
 </body>
