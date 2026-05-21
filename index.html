@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dua Arah Coffee | Kopi untuk Setiap Pilihan</title>
 
     <meta name="description" content="Dua Arah Coffee menyediakan kopi americano dan kopi aren premium dengan pemesanan online via WhatsApp.">
 
     <style>
+
         :root {
             --primary-color: #4A3525;
             --secondary-color: #3D2A21;
@@ -352,6 +352,7 @@
 
     <header>
         <div class="nav-container">
+
             <div class="logo">
                 dua arah
                 <span>COFFEE</span>
@@ -362,12 +363,14 @@
                 <a href="#pesan">Pesan</a>
                 <a href="#instagram">Instagram</a>
             </nav>
+
         </div>
     </header>
 
     <!-- HERO -->
 
     <section class="hero">
+
         <h1>dua arah COFFEE</h1>
 
         <p>
@@ -377,11 +380,13 @@
         <a href="#pesan" class="btn-main">
             Pesan Sekarang
         </a>
+
     </section>
 
     <!-- MENU -->
 
     <section id="menu" class="product-section">
+
         <div class="container">
 
             <h2 class="section-title">
@@ -391,6 +396,7 @@
             <div class="menu-grid">
 
                 <div class="menu-card">
+
                     <img src="americano.jpg"
                          alt="Americano"
                          class="menu-img">
@@ -406,9 +412,11 @@
                     <p class="menu-desc">
                         Espresso murni pilihan dengan rasa kuat dan segar.
                     </p>
+
                 </div>
 
                 <div class="menu-card">
+
                     <img src="aren.jpg"
                          alt="Kopi Aren"
                          class="menu-img">
@@ -424,10 +432,13 @@
                     <p class="menu-desc">
                         Espresso premium dipadukan susu segar dan gula aren asli.
                     </p>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
 
     <!-- FORM -->
@@ -451,10 +462,18 @@
                            required>
                 </div>
 
-                <div class="form-group">
-                    <label>Pilih Menu</label>
+                <!-- MENU 1 -->
 
-                    <select id="produk" required>
+                <div class="form-group">
+
+                    <label>Menu 1</label>
+
+                    <select id="produk1" required>
+
+                        <option value="">
+                            -- Pilih Menu --
+                        </option>
+
                         <option value="Americano (Rp 12.500)">
                             Americano — Rp 12.500
                         </option>
@@ -462,12 +481,63 @@
                         <option value="Kopi Aren (Rp 17.500)">
                             Kopi Aren — Rp 17.500
                         </option>
+
                     </select>
+
                 </div>
+
+                <div class="form-group">
+
+                    <label>Jumlah Menu 1</label>
+
+                    <input type="number"
+                           id="jumlah1"
+                           min="1"
+                           value="1">
+
+                </div>
+
+                <!-- MENU 2 -->
+
+                <div class="form-group">
+
+                    <label>Menu 2 (Opsional)</label>
+
+                    <select id="produk2">
+
+                        <option value="">
+                            -- Tidak Memesan Menu Kedua --
+                        </option>
+
+                        <option value="Americano (Rp 12.500)">
+                            Americano — Rp 12.500
+                        </option>
+
+                        <option value="Kopi Aren (Rp 17.500)">
+                            Kopi Aren — Rp 17.500
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Jumlah Menu 2</label>
+
+                    <input type="number"
+                           id="jumlah2"
+                           min="1"
+                           value="1">
+
+                </div>
+
+                <!-- SUGAR & ICE -->
 
                 <div class="form-row">
 
                     <div class="form-group">
+
                         <label>Tingkat Gula</label>
 
                         <select id="gula">
@@ -475,9 +545,11 @@
                             <option>Less Sugar</option>
                             <option>No Sugar</option>
                         </select>
+
                     </div>
 
                     <div class="form-group">
+
                         <label>Tingkat Es</label>
 
                         <select id="ice">
@@ -485,48 +557,53 @@
                             <option>Less Ice</option>
                             <option>No Ice</option>
                         </select>
+
                     </div>
 
                 </div>
+
+                <!-- EXTRA SHOT -->
 
                 <div class="form-group">
 
                     <label>Tambahan</label>
 
                     <div class="checkbox-group">
+
                         <input type="checkbox" id="extrashot">
 
                         <label for="extrashot">
                             Extra Shot Espresso (+ Rp 2.500)
                         </label>
+
                     </div>
 
                 </div>
 
-                <div class="form-group">
-                    <label>Jumlah Botol</label>
-
-                    <input type="number"
-                           id="jumlah"
-                           min="1"
-                           value="1"
-                           required>
-                </div>
+                <!-- ADDRESS -->
 
                 <div class="form-group">
+
                     <label>Alamat Pengiriman</label>
 
                     <textarea id="alamat"
                               rows="3"
                               required></textarea>
+
                 </div>
 
+                <!-- NOTE -->
+
                 <div class="form-group">
+
                     <label>Catatan Tambahan</label>
 
                     <textarea id="catatan"
                               rows="2"></textarea>
+
                 </div>
+
+                <!-- BUTTON -->
 
                 <button type="button"
                         onclick="prosesPemesanan()"
@@ -540,6 +617,7 @@
             </form>
 
         </div>
+
     </section>
 
     <!-- INSTAGRAM -->
@@ -548,7 +626,9 @@
 
         <div class="instagram-card">
 
-            <div style="font-size:30px;">📸</div>
+            <div style="font-size:30px;">
+                📸
+            </div>
 
             <p>
                 Ikuti Cerita Kami
@@ -577,6 +657,7 @@
     <!-- FOOTER -->
 
     <footer>
+
         <p>
             &copy; 2026 Dua Arah Coffee
         </p>
@@ -584,6 +665,7 @@
         <p style="font-size:12px; margin-top:5px;">
             #KOPIDUAARAH — dua arah, banyak tujuan.
         </p>
+
     </footer>
 
     <!-- FLOATING WA -->
@@ -605,10 +687,16 @@
             var nomorWA = "6288210129982";
 
             var nama = document.getElementById('nama').value;
-            var produk = document.getElementById('produk').value;
+
+            var produk1 = document.getElementById('produk1').value;
+            var jumlah1 = document.getElementById('jumlah1').value;
+
+            var produk2 = document.getElementById('produk2').value;
+            var jumlah2 = document.getElementById('jumlah2').value;
+
             var gula = document.getElementById('gula').value;
             var ice = document.getElementById('ice').value;
-            var jumlah = document.getElementById('jumlah').value;
+
             var alamat = document.getElementById('alamat').value;
             var catatan = document.getElementById('catatan').value;
 
@@ -625,7 +713,7 @@
                 ? catatan
                 : "-";
 
-            if (!nama || !alamat || jumlah < 1) {
+            if (!nama || !alamat || !produk1 || jumlah1 < 1) {
 
                 alert(
                     'Silakan lengkapi formulir dengan benar.'
@@ -638,12 +726,25 @@
 Halo Dua Arah Coffee, saya ingin memesan:
 
 *Nama Pelanggan:* ${nama}
-*Menu Kopi:* ${produk}
+
+*MENU 1*
+${produk1}
+Jumlah: ${jumlah1} Botol
+
+*MENU 2*
+${produk2 ? produk2 : '-'}
+
+Jumlah:
+${produk2 ? jumlah2 + ' Botol' : '-'}
+
 *Tingkat Gula:* ${gula}
+
 *Tingkat Es:* ${ice}
+
 *Extra Shot Espresso:* ${extraTxt}
-*Jumlah Pemesanan:* ${jumlah} Botol
+
 *Alamat Pengiriman:* ${alamat}
+
 *Catatan Tambahan:* ${catatanTxt}
 
 Mohon segera dikalkulasikan total harganya ya, terima kasih!
