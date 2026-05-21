@@ -10,12 +10,14 @@
             --primary: #4A3525;
             --accent: #8C6A50;
             --bg: #FAF6F0;
+            --text-dark: #332419;
         }
 
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: var(--bg);
+            color: var(--text-dark);
         }
 
         /* Banner Paling Atas */
@@ -43,6 +45,37 @@
             max-width: 900px;
             margin: auto;
             padding: 20px;
+        }
+
+        /* SEKSI PROMOSI (COPYWRITING) */
+        .promo-section {
+            background: #fff;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 15px 0 25px 0;
+            border-radius: 4px 10px 10px 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .promo-tagline {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .promo-desc {
+            font-size: 15px;
+            color: #665243;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .promo-highlight {
+            font-weight: bold;
+            color: var(--accent);
         }
 
         /* MENU */
@@ -154,6 +187,16 @@
     </header>
 
     <div class="container">
+
+        <div class="promo-section">
+            <div class="promo-tagline">
+                "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
+            </div>
+            <p class="promo-desc">
+                Setiap orang punya cerita dan tujuannya masing-masing, tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama! <br>
+                Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>. Pilih kopi favoritmu, satukan obrolan, dan nikmati kesegarannya bersama-sama!
+            </p>
+        </div>
 
         <h3>Menu</h3>
 
