@@ -203,6 +203,9 @@ input,select{
 <input id="nama" placeholder="Nama">
 <input id="alamat" placeholder="Alamat">
 
+<!-- ✅ INPUT BARU -->
+<input id="catatan" placeholder="Catatan (extra shot / less sugar / dll)">
+
 <select id="payment" onchange="paymentCheck()">
     <option value="cash">Cash</option>
     <option value="qris">QRIS</option>
@@ -293,6 +296,7 @@ function checkout(){
 
     let nama=document.getElementById("nama").value;
     let alamat=document.getElementById("alamat").value;
+    let catatan=document.getElementById("catatan").value;
 
     if(cart.length===0){
         alert("Keranjang kosong");
@@ -311,6 +315,10 @@ function checkout(){
     });
 
     text+=`%0ANama: ${nama}%0AAlamat: ${alamat}`;
+
+    if(catatan){
+        text+=`%0ACatatan: ${catatan}`;
+    }
 
     window.open("https://wa.me/6288210129982?text="+text);
 }
