@@ -2,274 +2,74 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dua Arah Coffee - GoFood Style</title>
+<title>Level 3 - App System</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:#FAF6F0;
-}
-
-/* HEADER */
-header{
-    background:#4A3525;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-
-/* CONTAINER */
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px;
-}
-
-/* MENU */
-.menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    text-align:center;
-}
-
-.card img{
-    width:100%;
-    height:150px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.price{
-    color:#8C6A50;
-    font-weight:bold;
-}
-
-.btn{
-    background:#4A3525;
-    color:white;
-    border:none;
-    padding:8px 12px;
-    margin:5px;
-    cursor:pointer;
-    border-radius:5px;
-}
-
-/* CART */
-.cart{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
-    width:250px;
-}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-}
-
-.box{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    width:300px;
-    text-align:center;
-}
-
-input,textarea,select{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
-
-img{
-    width:100%;
-    border-radius:10px;
-}
+body{font-family:Arial;margin:0;background:#FAF6F0;}
+header{background:#4A3525;color:white;text-align:center;padding:20px;}
+.container{padding:20px;}
+.box{background:white;padding:10px;margin-bottom:10px;border-radius:10px;}
+button{background:#4A3525;color:white;border:none;padding:8px;border-radius:5px;}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Dua Arah Coffee</h1>
-    <p>Mini GoFood System</p>
+<h2>Level 3 - App System + Admin</h2>
 </header>
 
 <div class="container">
 
-    <div class="menu">
+<h3>Tambah Order</h3>
 
-        <div class="card">
-            <img src="americano.jpg">
-            <h3>Americano</h3>
-            <p class="price">Rp 12.500</p>
-            <button class="btn" onclick="add('Americano',12500)">+</button>
-            <button class="btn" onclick="removeItem('Americano')">-</button>
-        </div>
+<input id="nama" placeholder="Nama"><br><br>
+<textarea id="order" placeholder="Pesanan"></textarea><br><br>
 
-        <div class="card">
-            <img src="aren.jpg">
-            <h3>Kopi Aren</h3>
-            <p class="price">Rp 17.500</p>
-            <button class="btn" onclick="add('Kopi Aren',17500)">+</button>
-            <button class="btn" onclick="removeItem('Kopi Aren')">-</button>
-        </div>
+<button onclick="save()">Simpan Order</button>
 
-    </div>
+<h3>📦 Semua Order</h3>
+<div id="list"></div>
 
-</div>
-
-<!-- CART -->
-<div class="cart">
-    <h3>Keranjang</h3>
-    <div id="cartList">Kosong</div>
-    <h4>Total: Rp <span id="total">0</span></h4>
-    <button class="btn" onclick="openCheckout()">Checkout</button>
-</div>
-
-<!-- CHECKOUT -->
-<div class="modal" id="checkout">
-    <div class="box">
-
-        <h3>Checkout</h3>
-
-        <input id="nama" placeholder="Nama">
-        <textarea id="alamat" placeholder="Alamat"></textarea>
-
-        <select id="payment">
-            <option value="qris">QRIS</option>
-            <option value="bca">Transfer BCA</option>
-            <option value="cash">Cash</option>
-        </select>
-
-        <button class="btn" onclick="pay()">Bayar</button>
-        <button class="btn" onclick="closeCheckout()">Tutup</button>
-
-    </div>
-</div>
-
-<!-- PAYMENT -->
-<div class="modal" id="paymentPage">
-    <div class="box">
-
-        <h3>Pembayaran</h3>
-        <div id="payContent"></div>
-
-        <button class="btn" onclick="finish()">Selesai</button>
-
-    </div>
 </div>
 
 <script>
 
-let cart = [];
+function save(){
 
-function add(name,price){
+let data={
+nama:document.getElementById('nama').value,
+order:document.getElementById('order').value,
+time:new Date().toLocaleString()
+};
 
-    let item = cart.find(i=>i.name===name);
+let db=JSON.parse(localStorage.getItem("orders")||"[]");
+db.push(data);
+localStorage.setItem("orders",JSON.stringify(db));
 
-    if(item){
-        item.qty++;
-    }else{
-        cart.push({name,price,qty:1});
-    }
-
-    updateCart();
+show();
 }
 
-function removeItem(name){
+function show(){
 
-    let item = cart.find(i=>i.name===name);
+let db=JSON.parse(localStorage.getItem("orders")||"[]");
 
-    if(item){
-        item.qty--;
-        if(item.qty<=0){
-            cart = cart.filter(i=>i.name!==name);
-        }
-    }
+let html="";
 
-    updateCart();
+db.forEach(d=>{
+html+=`
+<div class='box'>
+<b>${d.nama}</b><br>
+${d.order}<br>
+<small>${d.time}</small>
+</div>
+`;
+});
+
+document.getElementById("list").innerHTML=html;
 }
 
-function updateCart(){
-
-    let html="";
-    let total=0;
-
-    if(cart.length===0){
-        html="Kosong";
-    }else{
-        cart.forEach(i=>{
-            html+=`${i.name} x ${i.qty}<br>`;
-            total+=i.price*i.qty;
-        });
-    }
-
-    document.getElementById('cartList').innerHTML=html;
-    document.getElementById('total').innerText=total;
-}
-
-function openCheckout(){
-    document.getElementById('checkout').style.display="flex";
-}
-
-function closeCheckout(){
-    document.getElementById('checkout').style.display="none";
-}
-
-function pay(){
-
-    let metode=document.getElementById('payment').value;
-
-    document.getElementById('checkout').style.display="none";
-    document.getElementById('paymentPage').style.display="flex";
-
-    let content="";
-
-    if(metode==="qris"){
-        content=`<img src="qris.jpg"><p>Scan QRIS untuk bayar</p>`;
-    }
-
-    if(metode==="bca"){
-        content=`<img src="bca.jpg"><p>No Rek: 088210129982</p>`;
-    }
-
-    if(metode==="cash"){
-        content=`<p>Bayar saat pesanan datang</p>`;
-    }
-
-    document.getElementById('payContent').innerHTML=content;
-}
-
-function finish(){
-    cart=[];
-    updateCart();
-    document.getElementById('paymentPage').style.display="none";
-}
+show();
 
 </script>
 
