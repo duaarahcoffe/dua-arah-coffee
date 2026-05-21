@@ -3,859 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dua Arah Coffee</title>
+<title>Dua Arah Coffee - GoFood Style</title>
 
 <style>
-
-:root{
-    --primary:#4A3525;
-    --secondary:#3D2A21;
-    --accent:#8C6A50;
-    --light:#FAF6F0;
-    --cream:#EFE6DD;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
 body{
-    background:var(--light);
-    color:#2B1E16;
-}
-
-html{
-    scroll-behavior:smooth;
+    margin:0;
+    font-family:Arial;
+    background:#FAF6F0;
 }
 
 /* HEADER */
-
 header{
-    background:var(--primary);
+    background:#4A3525;
     color:white;
-    padding:18px 20px;
-    position:sticky;
-    top:0;
-    z-index:999;
-}
-
-.nav{
-    max-width:1100px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    text-transform:uppercase;
-}
-
-.logo span{
-    display:block;
-    font-size:11px;
-    letter-spacing:4px;
-    font-weight:300;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
-
-/* HERO */
-
-.hero{
-    background:
-    linear-gradient(rgba(43,30,22,.75),rgba(43,30,22,.75)),
-    url('coffee-bg.jpg') center/cover;
-    color:white;
+    padding:20px;
     text-align:center;
-    padding:120px 20px;
-}
-
-.hero h1{
-    font-size:48px;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:20px;
-    margin-bottom:30px;
-    color:#EFE6DD;
-}
-
-.btn{
-    background:var(--accent);
-    color:white;
-    border:none;
-    padding:14px 28px;
-    border-radius:30px;
-    text-decoration:none;
-    cursor:pointer;
-    font-weight:bold;
 }
 
 /* CONTAINER */
-
 .container{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
-    padding:60px 20px;
-}
-
-.section-title{
-    text-align:center;
-    font-size:34px;
-    margin-bottom:40px;
-    color:var(--primary);
+    padding:20px;
 }
 
 /* MENU */
-
-.menu-grid{
+.menu{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 }
 
-.menu-card{
+.card{
     background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-.menu-img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.menu-content{
-    padding:25px;
-}
-
-.menu-title{
-    font-size:24px;
-    color:var(--primary);
-    margin-bottom:8px;
-}
-
-.menu-price{
-    color:var(--accent);
-    font-weight:bold;
-    margin-bottom:12px;
-}
-
-.qty-box{
-    margin-top:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:15px;
-}
-
-.qty-btn{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:var(--primary);
-    color:white;
-    font-size:22px;
-    cursor:pointer;
-}
-
-.qty-number{
-    font-size:20px;
-    font-weight:bold;
-    min-width:30px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
     text-align:center;
 }
 
-/* ORDER */
-
-.order-section{
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.06);
-}
-
-.form-group{
-    margin-bottom:20px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
-}
-
-.form-group input,
-.form-group textarea{
+.card img{
     width:100%;
-    padding:14px;
+    height:150px;
+    object-fit:cover;
     border-radius:10px;
-    border:1px solid #ddd;
-    background:#fafafa;
 }
 
-/* PAYMENT */
-
-.payment-box{
-    background:var(--cream);
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
+.price{
+    color:#8C6A50;
+    font-weight:bold;
 }
 
-.payment-option{
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+.btn{
+    background:#4A3525;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin:5px;
+    cursor:pointer;
+    border-radius:5px;
 }
 
 /* CART */
-
 .cart{
-    margin-top:30px;
-    background:var(--cream);
-    padding:25px;
-    border-radius:15px;
-}
-
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-}
-
-.total{
-    margin-top:20px;
-    font-size:24px;
-    font-weight:bold;
-    color:var(--primary);
-}
-
-/* INSTAGRAM */
-
-.instagram{
-    background:var(--cream);
-    text-align:center;
-    padding:60px 20px;
-}
-
-.insta-card{
-    background:white;
-    max-width:450px;
-    margin:auto;
-    padding:30px;
-    border-radius:20px;
-}
-
-.insta-btn{
-    display:inline-block;
-    margin-top:20px;
-    background:linear-gradient(
-        45deg,
-        #f09433,
-        #dc2743,
-        #bc1888
-    );
-    color:white;
-    padding:12px 24px;
-    border-radius:30px;
-    text-decoration:none;
-}
-
-/* FOOTER */
-
-footer{
-    background:var(--secondary);
-    color:white;
-    text-align:center;
-    padding:30px;
-}
-
-/* FLOATING WA */
-
-.floating-wa{
     position:fixed;
-    bottom:20px;
     right:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
+    bottom:20px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    width:250px;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
     justify-content:center;
     align-items:center;
-    color:white;
-    font-size:28px;
-    text-decoration:none;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero h1{
-    font-size:34px;
+.box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    width:300px;
+    text-align:center;
 }
 
-.hero p{
-    font-size:16px;
+input,textarea,select{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
 }
 
+img{
+    width:100%;
+    border-radius:10px;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="nav">
-
-<div class="logo">
-dua arah
-<span>COFFEE</span>
-</div>
-
-<nav>
-<a href="#menu">Menu</a>
-<a href="#pesan">Pesan</a>
-<a href="#instagram">Instagram</a>
-</nav>
-
-</div>
-
+    <h1>Dua Arah Coffee</h1>
+    <p>Mini GoFood System</p>
 </header>
 
-<!-- HERO -->
-
-<section class="hero">
-
-<h1>Dua Arah Coffee</h1>
-
-<p>
-"Kopi untuk setiap pilihan, ke mana pun arahmu."
-</p>
-
-<a href="#pesan" class="btn">
-Pesan Sekarang
-</a>
-
-</section>
-
-<!-- MENU -->
-
-<section id="menu" class="container">
-
-<h2 class="section-title">
-Daftar Menu
-</h2>
-
-<div class="menu-grid">
-
-<!-- AMERICANO -->
-
-<div class="menu-card">
-
-<img src="americano.jpg" class="menu-img">
-
-<div class="menu-content">
-
-<h3 class="menu-title">
-Americano
-</h3>
-
-<div class="menu-price">
-Rp 12.500
-</div>
-
-<p>
-Espresso murni dengan rasa kuat dan segar.
-</p>
-
-<div class="qty-box">
-
-<button class="qty-btn"
-onclick="kurang('americano')">
--
-</button>
-
-<div id="qty-americano" class="qty-number">
-0
-</div>
-
-<button class="qty-btn"
-onclick="tambah('americano')">
-+
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- KOPI AREN -->
-
-<div class="menu-card">
-
-<img src="aren.jpg" class="menu-img">
-
-<div class="menu-content">
-
-<h3 class="menu-title">
-Kopi Aren
-</h3>
-
-<div class="menu-price">
-Rp 17.500
-</div>
-
-<p>
-Espresso premium dipadukan susu segar dan gula aren asli.
-</p>
-
-<div class="qty-box">
-
-<button class="qty-btn"
-onclick="kurang('aren')">
--
-</button>
-
-<div id="qty-aren" class="qty-number">
-0
-</div>
-
-<button class="qty-btn"
-onclick="tambah('aren')">
-+
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ORDER -->
-
-<section id="pesan" class="container">
-
-<h2 class="section-title">
-Pesanan Anda
-</h2>
-
-<div class="order-section">
-
-<div class="form-group">
-
-<label>Nama Lengkap</label>
-
-<input type="text" id="nama">
-
-</div>
-
-<div class="form-group">
-
-<label>Alamat Pengiriman</label>
-
-<textarea id="alamat" rows="3"></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Catatan Tambahan</label>
-
-<textarea id="catatan" rows="2"></textarea>
-
-</div>
-
-<!-- PAYMENT -->
-
-<div class="payment-box">
-
-<h3 style="margin-bottom:15px;">
-💳 Metode Pembayaran
-</h3>
-
-<div class="payment-option">
-<input type="radio"
-name="payment"
-value="QRIS"
-checked>
-<label>QRIS</label>
-</div>
-
-<div class="payment-option">
-<input type="radio"
-name="payment"
-value="Cash">
-<label>Cash</label>
-</div>
-
-<div class="payment-option">
-<input type="radio"
-name="payment"
-value="Transfer BCA">
-<label>Transfer BCA</label>
-</div>
-
-</div>
-
-<!-- PAYMENT INFO -->
-
-<div id="paymentInfo"
-style="
-display:block;
-margin-top:20px;
-padding:20px;
-background:#FAF6F0;
-border-radius:12px;
-border:1px solid #ddd;
-">
-
-<!-- QRIS -->
-
-<div id="qrisBox"
-style="text-align:center;">
-
-<h3 style="margin-bottom:15px;">
-Scan QRIS
-</h3>
-
-<img src="qris.jpg"
-alt="QRIS"
-style="
-width:300px;
-max-width:100%;
-border-radius:12px;
-margin-bottom:15px;
-border:1px solid #ddd;
-">
-
-<p>
-Silakan scan QRIS untuk melakukan pembayaran.
-</p>
-
-</div>
-
-<!-- BCA -->
-
-<div id="bcaBox"
-style="
-display:none;
-text-align:center;
-">
-
-<h3 style="margin-bottom:15px;">
-Transfer BCA
-</h3>
-
-<img src="bca.jpg"
-alt="Transfer BCA"
-style="
-width:300px;
-max-width:100%;
-border-radius:12px;
-margin-bottom:15px;
-border:1px solid #ddd;
-">
-
-<p>
-Silakan transfer ke rekening BCA di atas.
-</p>
-
-</div>
+<div class="container">
+
+    <div class="menu">
+
+        <div class="card">
+            <img src="americano.jpg">
+            <h3>Americano</h3>
+            <p class="price">Rp 12.500</p>
+            <button class="btn" onclick="add('Americano',12500)">+</button>
+            <button class="btn" onclick="removeItem('Americano')">-</button>
+        </div>
+
+        <div class="card">
+            <img src="aren.jpg">
+            <h3>Kopi Aren</h3>
+            <p class="price">Rp 17.500</p>
+            <button class="btn" onclick="add('Kopi Aren',17500)">+</button>
+            <button class="btn" onclick="removeItem('Kopi Aren')">-</button>
+        </div>
+
+    </div>
 
 </div>
 
 <!-- CART -->
-
 <div class="cart">
-
-<h3 style="margin-bottom:15px;">
-🛒 Keranjang Pesanan
-</h3>
-
-<div class="cart-item">
-<span>Americano</span>
-<span id="cart-americano">0 x</span>
+    <h3>Keranjang</h3>
+    <div id="cartList">Kosong</div>
+    <h4>Total: Rp <span id="total">0</span></h4>
+    <button class="btn" onclick="openCheckout()">Checkout</button>
 </div>
 
-<div class="cart-item">
-<span>Kopi Aren</span>
-<span id="cart-aren">0 x</span>
+<!-- CHECKOUT -->
+<div class="modal" id="checkout">
+    <div class="box">
+
+        <h3>Checkout</h3>
+
+        <input id="nama" placeholder="Nama">
+        <textarea id="alamat" placeholder="Alamat"></textarea>
+
+        <select id="payment">
+            <option value="qris">QRIS</option>
+            <option value="bca">Transfer BCA</option>
+            <option value="cash">Cash</option>
+        </select>
+
+        <button class="btn" onclick="pay()">Bayar</button>
+        <button class="btn" onclick="closeCheckout()">Tutup</button>
+
+    </div>
 </div>
 
-<div class="total">
-Total:
-<span id="total">
-Rp 0
-</span>
+<!-- PAYMENT -->
+<div class="modal" id="paymentPage">
+    <div class="box">
+
+        <h3>Pembayaran</h3>
+        <div id="payContent"></div>
+
+        <button class="btn" onclick="finish()">Selesai</button>
+
+    </div>
 </div>
-
-</div>
-
-<br>
-
-<button class="btn"
-style="width:100%;"
-onclick="pesanWA()">
-
-Kirim Pesanan via WhatsApp
-
-</button>
-
-</div>
-
-</section>
-
-<!-- INSTAGRAM -->
-
-<section id="instagram" class="instagram">
-
-<div class="insta-card">
-
-<div style="font-size:35px;">
-📸
-</div>
-
-<h2 style="margin:15px 0;">
-@duaarah.coffee
-</h2>
-
-<p>
-Info promo terbaru dan keseruan seduh harian kami.
-</p>
-
-<a href="https://www.instagram.com/duaarah.coffee"
-target="_blank"
-class="insta-btn">
-
-Kunjungi Instagram
-
-</a>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-<p>
-© 2026 Dua Arah Coffee
-</p>
-
-<p style="font-size:12px;margin-top:5px;">
-#KOPIDUAARAH — dua arah, banyak tujuan.
-</p>
-
-</footer>
-
-<!-- FLOATING WA -->
-
-<a href="https://wa.me/6288210129982"
-target="_blank"
-class="floating-wa">
-
-💬
-
-</a>
 
 <script>
 
-let americano = 0;
-let aren = 0;
+let cart = [];
 
-function tambah(menu){
+function add(name,price){
 
-if(menu === 'americano'){
-americano++;
+    let item = cart.find(i=>i.name===name);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({name,price,qty:1});
+    }
+
+    updateCart();
 }
 
-if(menu === 'aren'){
-aren++;
-}
+function removeItem(name){
 
-updateCart();
-}
+    let item = cart.find(i=>i.name===name);
 
-function kurang(menu){
+    if(item){
+        item.qty--;
+        if(item.qty<=0){
+            cart = cart.filter(i=>i.name!==name);
+        }
+    }
 
-if(menu === 'americano' && americano > 0){
-americano--;
-}
-
-if(menu === 'aren' && aren > 0){
-aren--;
-}
-
-updateCart();
-}
-
-function rupiah(angka){
-
-return angka.toLocaleString('id-ID');
+    updateCart();
 }
 
 function updateCart(){
 
-document.getElementById('qty-americano')
-.innerHTML = americano;
+    let html="";
+    let total=0;
 
-document.getElementById('qty-aren')
-.innerHTML = aren;
+    if(cart.length===0){
+        html="Kosong";
+    }else{
+        cart.forEach(i=>{
+            html+=`${i.name} x ${i.qty}<br>`;
+            total+=i.price*i.qty;
+        });
+    }
 
-document.getElementById('cart-americano')
-.innerHTML = americano + " x";
-
-document.getElementById('cart-aren')
-.innerHTML = aren + " x";
-
-let total =
-(americano * 12500) +
-(aren * 17500);
-
-document.getElementById('total')
-.innerHTML = "Rp " + rupiah(total);
+    document.getElementById('cartList').innerHTML=html;
+    document.getElementById('total').innerText=total;
 }
 
-function pesanWA(){
-
-let nama =
-document.getElementById('nama').value;
-
-let alamat =
-document.getElementById('alamat').value;
-
-let catatan =
-document.getElementById('catatan').value;
-
-let pembayaran =
-document.querySelector(
-'input[name="payment"]:checked'
-).value;
-
-if(
-!nama ||
-!alamat ||
-(americano === 0 && aren === 0)
-){
-
-alert(
-'Lengkapi data dan pilih menu.'
-);
-
-return;
+function openCheckout(){
+    document.getElementById('checkout').style.display="flex";
 }
 
-let total =
-(americano * 12500) +
-(aren * 17500);
-
-let teks = `
-Halo Dua Arah Coffee, saya ingin memesan:
-
-Nama:
-${nama}
-
-Pesanan:
-- Americano : ${americano} Botol
-- Kopi Aren : ${aren} Botol
-
-Total:
-Rp ${rupiah(total)}
-
-Metode Pembayaran:
-${pembayaran}
-
-Alamat:
-${alamat}
-
-Catatan:
-${catatan ? catatan : '-'}
-
-Terima kasih.
-`;
-
-let url =
-"https://wa.me/6288210129982?text=" +
-encodeURIComponent(teks);
-
-window.open(url, '_blank');
+function closeCheckout(){
+    document.getElementById('checkout').style.display="none";
 }
 
-/* PAYMENT SWITCH */
+function pay(){
 
-const paymentRadios =
-document.querySelectorAll(
-'input[name="payment"]'
-);
+    let metode=document.getElementById('payment').value;
 
-paymentRadios.forEach(radio => {
+    document.getElementById('checkout').style.display="none";
+    document.getElementById('paymentPage').style.display="flex";
 
-radio.addEventListener('change', function(){
+    let content="";
 
-const paymentInfo =
-document.getElementById('paymentInfo');
+    if(metode==="qris"){
+        content=`<img src="qris.jpg"><p>Scan QRIS untuk bayar</p>`;
+    }
 
-const qrisBox =
-document.getElementById('qrisBox');
+    if(metode==="bca"){
+        content=`<img src="bca.jpg"><p>No Rek: 088210129982</p>`;
+    }
 
-const bcaBox =
-document.getElementById('bcaBox');
+    if(metode==="cash"){
+        content=`<p>Bayar saat pesanan datang</p>`;
+    }
 
-paymentInfo.style.display = 'block';
-
-qrisBox.style.display = 'none';
-bcaBox.style.display = 'none';
-
-if(this.value === 'QRIS'){
-
-qrisBox.style.display = 'block';
-
+    document.getElementById('payContent').innerHTML=content;
 }
 
-if(this.value === 'Transfer BCA'){
-
-bcaBox.style.display = 'block';
-
+function finish(){
+    cart=[];
+    updateCart();
+    document.getElementById('paymentPage').style.display="none";
 }
-
-if(this.value === 'Cash'){
-
-paymentInfo.style.display = 'none';
-
-}
-
-});
-
-});
-
-updateCart();
 
 </script>
 
