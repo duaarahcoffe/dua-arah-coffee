@@ -1,354 +1,320 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dua Arah Coffee</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dua Arah Coffee</title>
 
-<style>
-:root{
-    --primary:#4A3525;
-    --accent:#8C6A50;
-    --bg:#FAF6F0;
-}
+    <style>
+        :root {
+            --primary: #4A3525;
+            --accent: #8C6A50;
+            --bg: #FAF6F0;
+            --text-dark: #332419;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+        }
 
-body{
-    background:var(--bg);
-}
+        /* Banner Paling Atas */
+        .top-banner {
+            width: 100%;
+            display: block;
+        }
 
-/* HEADER */
-header{
-    height:260px;
-    background:url("coffee-bg.jpg") center/cover;
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+        .top-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 450px; /* Batas tinggi maksimal di desktop agar proporsional */
+            object-fit: cover;
+        }
 
-header::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.55);
-}
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-.header-content{
-    position:relative;
-    z-index:1;
-    max-width:600px;
-}
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
 
-header h1{
-    font-size:38px;
-    letter-spacing:1px;
-    margin-bottom:10px;
-}
+        /* SEKSI PROMOSI (COPYWRITING) */
+        .promo-section {
+            background: #fff;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin: 15px 0 25px 0;
+            border-radius: 4px 10px 10px 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
 
-.tagline{
-    font-size:16px;
-    font-style:italic;
-    opacity:0.9;
-    margin-bottom:8px;
-}
+        .promo-tagline {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
 
-.quote{
-    font-size:13px;
-    opacity:0.8;
-    line-height:1.5;
-}
+        .promo-desc {
+            font-size: 15px;
+            color: #665243;
+            line-height: 1.6;
+            margin: 0;
+        }
 
-/* MENU */
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px;
-}
+        .promo-highlight {
+            font-weight: bold;
+            color: var(--accent);
+        }
 
-.menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
+        /* MENU */
+        .menu-card {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
 
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
+        .menu-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
 
-.card img{
-    width:100%;
-    height:160px;
-    object-fit:cover;
-}
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: auto; /* Mendorong tombol ke kanan */
+        }
 
-.card-body{
-    padding:15px;
-}
+        /* CART */
+        .cart {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
 
-.price{
-    color:var(--accent);
-    font-weight:bold;
-    margin:5px 0;
-}
+        /* INPUT */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
 
-.btn{
-    width:100%;
-    padding:10px;
-    border:none;
-    background:var(--primary);
-    color:white;
-    cursor:pointer;
-    border-radius:8px;
-}
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-/* CART BUTTON */
-.cart-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:var(--primary);
-    color:white;
-    font-size:24px;
-    border:none;
-    cursor:pointer;
-}
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            width: 90%;
+        }
 
-/* SIDEBAR */
-.sidebar{
-    position:fixed;
-    top:0;
-    right:-350px;
-    width:320px;
-    height:100%;
-    background:white;
-    box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-    padding:20px;
-    transition:0.3s;
-    overflow:auto;
-}
+        .modal img {
+            width: 100%;
+            border-radius: 10px;
+        }
 
-.sidebar.active{
-    right:0;
-}
+        .close {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
 
-.close{
-    color:red;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* FORM */
-input,select{
-    width:100%;
-    padding:10px;
-    margin:5px 0 10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
-
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    width:300px;
-    text-align:center;
-}
-
-.modal img{
-    width:100%;
-    border-radius:10px;
-}
-</style>
+        .checkout {
+            width: 100%;
+            padding: 12px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <div class="header-content">
-        <h1>Dua Arah Coffee ☕</h1>
-        <p class="tagline">Two Ways, One Perfect Taste</p>
-        <p class="quote">“Kopi bukan sekadar minuman, tapi cerita dalam setiap tegukan.”</p>
+    <div class="top-banner">
+        <img src="1000585015.png" alt="Dua Arah Coffee Banner">
     </div>
-</header>
 
-<div class="container">
+    <header>
+        <h2>☕ Dua Arah Coffee</h2>
+    </header>
 
-<h2>Menu</h2>
+    <div class="container">
 
-<div class="menu">
+        <div class="promo-section">
+            <div class="promo-tagline">
+                "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
+            </div>
+            <p class="promo-desc">
+                Setiap orang punya cerita dan tujuannya masing-masing, tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama! <br>
+                Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>. Pilih kopi favoritmu, satukan obrolan, dan nikmati kesegarannya bersama-sama!
+            </p>
+        </div>
 
-<div class="card">
-    <img src="americano.jpg">
-    <div class="card-body">
-        <h3>Americano</h3>
-        <div class="price">Rp 12.500</div>
-        <button class="btn" onclick="add('Americano',12500)">Tambah</button>
+        <h3>Menu</h3>
+
+        <div class="menu-card">
+            <img src="americano.jpg" alt="Americano">
+            <div>
+                <b>Americano</b><br>Rp 12.500
+            </div>
+            <button class="btn" onclick="add('Americano', 12500)">+</button>
+        </div>
+
+        <div class="menu-card">
+            <img src="aren.jpg" alt="Kopi Aren">
+            <div>
+                <b>Kopi Aren</b><br>Rp 17.500
+            </div>
+            <button class="btn" onclick="add('Kopi Aren', 17500)">+</button>
+        </div>
+
+        <h3>Keranjang</h3>
+        <div class="cart" id="cart">Kosong</div>
+
+        <h3>Data Pemesan</h3>
+        <input id="nama" placeholder="Nama Lengkap">
+        <input id="alamat" placeholder="Alamat Pengiriman">
+
+        <h3>Pembayaran</h3>
+        <select id="payment" onchange="cekBayar()">
+            <option value="cash">Cash</option>
+            <option value="qris">QRIS</option>
+            <option value="bca">Transfer BCA</option>
+        </select>
+
+        <button class="checkout" onclick="checkout()">Checkout WhatsApp</button>
+
     </div>
-</div>
 
-<div class="card">
-    <img src="aren.jpg">
-    <div class="card-body">
-        <h3>Kopi Aren</h3>
-        <div class="price">Rp 17.500</div>
-        <button class="btn" onclick="add('Kopi Aren',17500)">Tambah</button>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="title"></h3>
+            <img id="img" alt="Payment Method">
+            <span class="close" onclick="closeModal()">Tutup</span>
+        </div>
     </div>
-</div>
 
-</div>
+    <script>
+        let cart = [];
 
-<br>
+        function add(name, price) {
+            cart.push({name, price});
+            render();
+        }
 
-<h2>Data Pemesan</h2>
-<input id="nama" placeholder="Nama">
-<input id="alamat" placeholder="Alamat">
+        function render() {
+            let html = "";
+            let total = 0;
 
-<input id="catatan" placeholder="Catatan (extra shot / less sugar / dll)">
+            if (cart.length === 0) {
+                document.getElementById("cart").innerHTML = "Kosong";
+                return;
+            }
 
-<select id="payment" onchange="paymentCheck()">
-    <option value="cash">Cash</option>
-    <option value="qris">QRIS</option>
-    <option value="bca">Transfer BCA</option>
-</select>
+            cart.forEach((item) => {
+                html += `${item.name} - Rp ${item.price.toLocaleString('id-ID')}<br>`;
+                total += item.price;
+            });
 
-<button class="btn" onclick="checkout()">Checkout WhatsApp</button>
+            html += `<hr><b>Total: Rp ${total.toLocaleString('id-ID')}</b>`;
+            document.getElementById("cart").innerHTML = html;
+        }
 
-</div>
+        function cekBayar() {
+            let val = document.getElementById("payment").value;
 
-<!-- CART BUTTON -->
-<button class="cart-btn" onclick="toggleCart()">🛒</button>
+            if (val === "qris") {
+                openModal("QRIS Payment", "qris.jpg");
+            }
+            if (val === "bca") {
+                openModal("Transfer BCA", "bca.jpg");
+            }
+        }
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+        function openModal(title, img) {
+            document.getElementById("title").innerText = title;
+            document.getElementById("img").src = img;
+            document.getElementById("modal").style.display = "flex";
+        }
 
-<span class="close" onclick="toggleCart()">Tutup ✖</span>
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
 
-<h3>Keranjang</h3>
-<div id="cart">Kosong</div>
+        function checkout() {
+            let nama = document.getElementById("nama").value;
+            let alamat = document.getElementById("alamat").value;
+            let pay = document.getElementById("payment").value;
 
-</div>
+            if (cart.length === 0) {
+                alert("Keranjang kosong!");
+                return;
+            }
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h3 id="title"></h3>
-        <img id="img">
-        <br><br>
-        <button onclick="closeModal()">Tutup</button>
-    </div>
-</div>
+            if (!nama || !alamat) {
+                alert("Mohon isi nama dan alamat terlebih dahulu!");
+                return;
+            }
 
-<script>
+            let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
 
-let cart=[];
+            cart.forEach(i => {
+                text += `- ${i.name}%0A`;
+            });
 
-function add(name,price){
-    cart.push({name,price});
-    render();
-}
+            text += `%0ANama: ${nama}%0AAlamat: ${alamat}%0APembayaran: ${pay.toUpperCase()}`;
 
-function render(){
-    let html="";
-    let total=0;
-
-    if(cart.length===0){
-        document.getElementById("cart").innerHTML="Kosong";
-        return;
-    }
-
-    cart.forEach(i=>{
-        html+=`${i.name} - Rp ${i.price.toLocaleString('id-ID')}<br>`;
-        total+=i.price;
-    });
-
-    html+=`<hr><b>Total: Rp ${total.toLocaleString('id-ID')}</b>`;
-    document.getElementById("cart").innerHTML=html;
-}
-
-function toggleCart(){
-    document.getElementById("sidebar").classList.toggle("active");
-}
-
-function paymentCheck(){
-    let val=document.getElementById("payment").value;
-
-    if(val==="qris"){
-        openModal("QRIS Payment","qris.jpg");
-    }
-
-    if(val==="bca"){
-        openModal("Transfer BCA","bca.jpg");
-    }
-}
-
-function openModal(title,img){
-    document.getElementById("title").innerText=title;
-    document.getElementById("img").src=img;
-    document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-    document.getElementById("modal").style.display="none";
-}
-
-function checkout(){
-
-    let nama=document.getElementById("nama").value;
-    let alamat=document.getElementById("alamat").value;
-    let catatan=document.getElementById("catatan").value;
-
-    if(cart.length===0){
-        alert("Keranjang kosong");
-        return;
-    }
-
-    if(!nama||!alamat){
-        alert("Isi data lengkap");
-        return;
-    }
-
-    let text="Halo Dua Arah Coffee,%0A%0A";
-
-    cart.forEach(i=>{
-        text+=`- ${i.name}%0A`;
-    });
-
-    text+=`%0ANama: ${nama}%0AAlamat: ${alamat}`;
-
-    if(catatan){
-        text+=`%0ACatatan: ${catatan}`;
-    }
-
-    window.open("https://wa.me/6288210129982?text="+text);
-}
-
-</script>
+            window.open("https://wa.me/6288210129982?text=" + text);
+        }
+    </script>
 
 </body>
 </html>
