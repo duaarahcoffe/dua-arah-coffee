@@ -34,13 +34,6 @@
             object-fit: cover;
         }
 
-        header {
-            background: var(--primary);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
         .container {
             max-width: 900px;
             margin: auto;
@@ -196,20 +189,19 @@
 </head>
 <body>
 
+    <!-- BANNER -->
     <div class="top-banner">
         <img src="1000585015.png" alt="Dua Arah Coffee Banner">
     </div>
 
-    <header>
-        <h2>☕ Dua Arah Coffee</h2>
-    </header>
-
     <div class="container">
 
+        <!-- PROMO -->
         <div class="promo-section">
             <div class="promo-tagline">
                 "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
             </div>
+
             <p class="promo-desc">
                 Setiap orang punya cerita dan tujuannya masing-masing,
                 tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama!
@@ -217,37 +209,49 @@
             </p>
         </div>
 
+        <!-- MENU -->
         <h3>Menu</h3>
 
         <div class="menu-card">
             <img src="americano.jpg" alt="Americano">
+
             <div>
                 <b>Americano</b><br>
                 Rp 12.500
             </div>
-            <button class="btn" onclick="add('Americano',12500)">+</button>
+
+            <button class="btn" onclick="add('Americano',12500)">
+                +
+            </button>
         </div>
 
         <div class="menu-card">
             <img src="aren.jpg" alt="Kopi Aren">
+
             <div>
                 <b>Kopi Aren</b><br>
                 Rp 17.500
             </div>
-            <button class="btn" onclick="add('Kopi Aren',17500)">+</button>
+
+            <button class="btn" onclick="add('Kopi Aren',17500)">
+                +
+            </button>
         </div>
 
+        <!-- CART -->
         <h3>Keranjang</h3>
 
         <div class="cart" id="cart">
             Kosong
         </div>
 
+        <!-- DATA -->
         <h3>Data Pemesan</h3>
 
         <input id="nama" placeholder="Nama Lengkap">
         <input id="alamat" placeholder="Alamat Pengiriman">
 
+        <!-- PAYMENT -->
         <h3>Pembayaran</h3>
 
         <select id="payment" onchange="cekBayar()">
@@ -264,11 +268,19 @@
 
     <!-- MODAL -->
     <div class="modal" id="modal">
+
         <div class="modal-content">
+
             <h3 id="title"></h3>
+
             <img id="img" alt="Payment">
-            <span class="close" onclick="closeModal()">Tutup</span>
+
+            <span class="close" onclick="closeModal()">
+                Tutup
+            </span>
+
         </div>
+
     </div>
 
 <script>
