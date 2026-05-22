@@ -1,344 +1,503 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dua Arah Coffee</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root {
-            --primary: #4A3525;
-            --accent: #8C6A50;
-            --bg: #FAF6F0;
-            --text-dark: #332419;
-        }
+<title>Dua Arah Coffee</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-dark);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* HERO */
-        .hero{
-            background: linear-gradient(
-                135deg,
-                #4A3525,
-                #8C6A50
-            );
+<style>
 
-            color:white;
-            text-align:center;
-            padding:70px 20px;
-        }
+:root{
+    --primary:#3B2A1F;
+    --secondary:#8B5E3C;
+    --cream:#F8F4EE;
+    --white:#FFFFFF;
+    --dark:#1F1F1F;
+    --green:#25D366;
+}
 
-        .hero h1{
-            font-size:42px;
-            margin-bottom:15px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        .hero p{
-            max-width:700px;
-            margin:auto;
-            font-size:18px;
-            line-height:1.7;
-            opacity:0.95;
-        }
+body{
+    background:var(--cream);
+    color:var(--dark);
+}
 
-        .hero span{
-            display:inline-block;
-            margin-top:20px;
-            background:white;
-            color:#4A3525;
-            padding:10px 18px;
-            border-radius:30px;
-            font-weight:bold;
-        }
+/* HERO */
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
+.hero{
+    min-height:70vh;
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.55)
+    ),
+    url('coffee-bg.jpg') center/cover;
 
-        /* PROMO */
-        .promo-section {
-            background: #fff;
-            border-left: 5px solid var(--accent);
-            padding: 20px;
-            margin: 15px 0 25px 0;
-            border-radius: 4px 10px 10px 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            text-align: center;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    color:white;
+}
 
-        .promo-tagline {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
+.hero-content{
+    max-width:750px;
+}
 
-        .promo-desc {
-            font-size: 15px;
-            color: #665243;
-            line-height: 1.6;
-            margin: 0;
-        }
+.hero h1{
+    font-size:55px;
+    font-weight:700;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
 
-        .promo-highlight {
-            font-weight: bold;
-            color: var(--accent);
-        }
+.hero p{
+    font-size:18px;
+    line-height:1.8;
+    opacity:0.95;
+}
 
-        /* MENU */
-        .menu-card {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+.hero-badge{
+    display:inline-block;
+    margin-top:25px;
+    background:white;
+    color:var(--primary);
+    padding:12px 24px;
+    border-radius:40px;
+    font-weight:600;
+    font-size:14px;
+}
 
-        .menu-card img {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
+/* CONTAINER */
 
-        .btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: auto;
-        }
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
 
-        /* CART */
-        .cart {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+/* PROMO */
 
-        .qty-btn {
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-right: 5px;
-        }
+.promo{
+    background:var(--white);
+    border-radius:25px;
+    padding:30px;
+    margin-top:-60px;
+    position:relative;
+    z-index:2;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    text-align:center;
+}
 
-        .minus {
-            background: #ccc;
-        }
+.promo h2{
+    color:var(--primary);
+    margin-bottom:10px;
+}
 
-        .plus {
-            background: var(--accent);
-            color: white;
-        }
+.promo p{
+    color:#666;
+    line-height:1.8;
+}
 
-        /* INPUT */
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
+/* SECTION TITLE */
 
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.section-title{
+    font-size:28px;
+    margin:40px 0 20px;
+    color:var(--primary);
+}
 
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 300px;
-            width: 90%;
-        }
+/* MENU GRID */
 
-        .modal img {
-            width: 100%;
-            border-radius: 10px;
-        }
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
 
-        .close {
-            color: red;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
+/* CARD */
 
-        .checkout {
-            width: 100%;
-            padding: 12px;
-            background: green;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+.card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card-title{
+    font-size:22px;
+    font-weight:600;
+}
+
+.price{
+    margin:10px 0 20px;
+    color:var(--secondary);
+    font-weight:600;
+}
+
+/* BUTTON */
+
+.btn{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:14px;
+    background:var(--primary);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#2a1d15;
+}
+
+/* CART */
+
+.cart-box{
+    margin-top:40px;
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+.cart-item{
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.qty{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+}
+
+.qty button{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.minus{
+    background:#ddd;
+}
+
+.plus{
+    background:var(--secondary);
+    color:white;
+}
+
+/* FORM */
+
+.form-box{
+    margin-top:35px;
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    border:1px solid #ddd;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--secondary);
+}
+
+/* CHECKOUT */
+
+.checkout{
+    width:100%;
+    margin-top:10px;
+    border:none;
+    padding:16px;
+    border-radius:16px;
+    background:var(--green);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    width:320px;
+    text-align:center;
+}
+
+.modal img{
+    width:100%;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.close{
+    margin-top:20px;
+    display:inline-block;
+    color:red;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+}
+
+</style>
 </head>
 <body>
 
-    <!-- HERO -->
-    <div class="hero">
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
 
         <h1>☕ Dua Arah Coffee</h1>
 
         <p>
-            Tempat dimana obrolan dimulai,
-            cerita dibagikan,
-            dan kopi menemani setiap arah perjalananmu.
+            Tempat dimana cerita dimulai,
+            obrolan dipertemukan,
+            dan kopi menemani setiap perjalananmu.
         </p>
 
-        <span>
+        <div class="hero-badge">
             #NgopiSatuRasa
-        </span>
+        </div>
 
     </div>
 
-    <div class="container">
+</section>
 
-        <!-- PROMO -->
-        <div class="promo-section">
+<div class="container">
 
-            <div class="promo-tagline">
-                "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
+    <!-- PROMO -->
+
+    <div class="promo">
+
+        <h2>
+            Dua arah, banyak tujuan.
+        </h2>
+
+        <p>
+            Nongkrong lebih seru dengan kopi favoritmu.
+            Pesan sekarang dan nikmati suasana hangat
+            bersama teman, pasangan, ataupun keluargamu.
+        </p>
+
+    </div>
+
+    <!-- MENU -->
+
+    <h2 class="section-title">
+        Menu Favorit
+    </h2>
+
+    <div class="menu-grid">
+
+        <div class="card">
+
+            <img src="americano.jpg">
+
+            <div class="card-body">
+
+                <div class="card-title">
+                    Americano
+                </div>
+
+                <div class="price">
+                    Rp 12.500
+                </div>
+
+                <button class="btn"
+                onclick="add('Americano',12500)">
+                    Tambah
+                </button>
+
             </div>
-
-            <p class="promo-desc">
-                Setiap orang punya cerita dan tujuannya masing-masing,
-                tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama!
-                Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>.
-            </p>
 
         </div>
 
-        <!-- MENU -->
-        <h3>Menu</h3>
+        <div class="card">
 
-        <div class="menu-card">
+            <img src="aren.jpg">
 
-            <img src="americano.jpg" alt="Americano">
+            <div class="card-body">
 
-            <div>
-                <b>Americano</b><br>
-                Rp 12.500
+                <div class="card-title">
+                    Kopi Aren
+                </div>
+
+                <div class="price">
+                    Rp 17.500
+                </div>
+
+                <button class="btn"
+                onclick="add('Kopi Aren',17500)">
+                    Tambah
+                </button>
+
             </div>
-
-            <button class="btn" onclick="add('Americano',12500)">
-                +
-            </button>
 
         </div>
 
-        <div class="menu-card">
+    </div>
 
-            <img src="aren.jpg" alt="Kopi Aren">
+    <!-- CART -->
 
-            <div>
-                <b>Kopi Aren</b><br>
-                Rp 17.500
-            </div>
+    <div class="cart-box">
 
-            <button class="btn" onclick="add('Kopi Aren',17500)">
-                +
-            </button>
+        <h2>Keranjang</h2>
 
-        </div>
-
-        <!-- CART -->
-        <h3>Keranjang</h3>
-
-        <div class="cart" id="cart">
+        <div id="cart">
             Kosong
         </div>
 
-        <!-- DATA -->
-        <h3>Data Pemesan</h3>
+    </div>
 
-        <input id="nama" placeholder="Nama Lengkap">
+    <!-- FORM -->
 
-        <input id="alamat" placeholder="Alamat Pengiriman">
+    <div class="form-box">
 
-        <!-- PAYMENT -->
-        <h3>Pembayaran</h3>
+        <h2>Data Pemesan</h2>
 
-        <select id="payment" onchange="cekBayar()">
-            <option value="cash">Cash</option>
-            <option value="qris">QRIS</option>
-            <option value="bca">Transfer BCA</option>
-        </select>
+        <div class="input-group">
+            <label>Nama</label>
+            <input id="nama" placeholder="Masukkan nama">
+        </div>
 
-        <button class="checkout" onclick="checkout()">
+        <div class="input-group">
+            <label>Alamat</label>
+            <input id="alamat" placeholder="Masukkan alamat">
+        </div>
+
+        <div class="input-group">
+            <label>Pembayaran</label>
+
+            <select id="payment" onchange="cekBayar()">
+                <option value="cash">Cash</option>
+                <option value="qris">QRIS</option>
+                <option value="bca">Transfer BCA</option>
+            </select>
+        </div>
+
+        <button class="checkout"
+        onclick="checkout()">
             Checkout WhatsApp
         </button>
 
     </div>
 
-    <!-- MODAL -->
-    <div class="modal" id="modal">
+</div>
 
-        <div class="modal-content">
+<!-- MODAL -->
 
-            <h3 id="title"></h3>
+<div class="modal" id="modal">
 
-            <img id="img" alt="Payment">
+    <div class="modal-content">
 
-            <span class="close" onclick="closeModal()">
-                Tutup
-            </span>
+        <h3 id="title"></h3>
 
+        <img id="img">
+
+        <div class="close"
+        onclick="closeModal()">
+            Tutup
         </div>
 
     </div>
 
+</div>
+
 <script>
 
-let cart = [];
+let cart=[];
 
-function add(name, price) {
+function add(name,price){
 
-    let item = cart.find(i => i.name === name);
+    let item=cart.find(i=>i.name===name);
 
     if(item){
-        item.qty += 1;
+        item.qty+=1;
     }else{
         cart.push({
             name,
             price,
-            qty: 1
+            qty:1
         });
     }
 
@@ -347,120 +506,154 @@ function add(name, price) {
 
 function minus(name){
 
-    let item = cart.find(i => i.name === name);
+    let item=cart.find(i=>i.name===name);
 
     if(!item) return;
 
-    item.qty -= 1;
+    item.qty--;
 
-    if(item.qty <= 0){
-        cart = cart.filter(i => i.name !== name);
+    if(item.qty<=0){
+        cart=cart.filter(i=>i.name!==name);
     }
 
     render();
 }
 
-function render() {
+function render(){
 
-    let html = "";
-    let total = 0;
+    let html="";
+    let total=0;
 
-    if (cart.length === 0) {
-        document.getElementById("cart").innerHTML = "Kosong";
+    if(cart.length===0){
+
+        document.getElementById("cart")
+        .innerHTML="Keranjang kosong";
+
         return;
     }
 
-    cart.forEach((item) => {
+    cart.forEach(item=>{
 
-        let subtotal = item.price * item.qty;
-        total += subtotal;
+        let subtotal=item.price*item.qty;
 
-        html += `
-        <div style="margin-bottom:15px;">
+        total+=subtotal;
+
+        html+=`
+        <div class="cart-item">
 
             <b>${item.name}</b><br>
 
             Rp ${item.price.toLocaleString('id-ID')}
             x ${item.qty}
 
-            <br><br>
+            <div class="qty">
 
-            <button 
-                class="qty-btn minus"
+                <button class="minus"
                 onclick="minus('${item.name}')">
-                ➖
-            </button>
+                -
+                </button>
 
-            <button 
-                class="qty-btn plus"
-                onclick="add('${item.name}', ${item.price})">
-                ➕
-            </button>
+                <button class="plus"
+                onclick="add('${item.name}',${item.price})">
+                +
+                </button>
+
+            </div>
 
         </div>
-
-        <hr>
         `;
     });
 
-    html += `<h3>Total: Rp ${total.toLocaleString('id-ID')}</h3>`;
+    html+=`
+    <h3 style="margin-top:20px;">
+        Total: Rp ${total.toLocaleString('id-ID')}
+    </h3>
+    `;
 
-    document.getElementById("cart").innerHTML = html;
+    document.getElementById("cart")
+    .innerHTML=html;
 }
 
-function cekBayar() {
+function cekBayar(){
 
-    let val = document.getElementById("payment").value;
+    let val=
+    document.getElementById("payment").value;
 
-    if (val === "qris") {
-        openModal("QRIS Payment", "qris.jpg");
+    if(val==="qris"){
+        openModal(
+            "QRIS Payment",
+            "qris.jpg"
+        );
     }
 
-    if (val === "bca") {
-        openModal("Transfer BCA", "bca.jpg");
+    if(val==="bca"){
+        openModal(
+            "Transfer BCA",
+            "bca.jpg"
+        );
     }
 }
 
-function openModal(title, img) {
+function openModal(title,img){
 
-    document.getElementById("title").innerText = title;
-    document.getElementById("img").src = img;
-    document.getElementById("modal").style.display = "flex";
+    document.getElementById("title")
+    .innerText=title;
+
+    document.getElementById("img")
+    .src=img;
+
+    document.getElementById("modal")
+    .style.display="flex";
 }
 
-function closeModal() {
+function closeModal(){
 
-    document.getElementById("modal").style.display = "none";
+    document.getElementById("modal")
+    .style.display="none";
 }
 
-function checkout() {
+function checkout(){
 
-    let nama = document.getElementById("nama").value;
-    let alamat = document.getElementById("alamat").value;
-    let pay = document.getElementById("payment").value;
+    let nama=
+    document.getElementById("nama").value;
 
-    if (cart.length === 0) {
+    let alamat=
+    document.getElementById("alamat").value;
+
+    let pay=
+    document.getElementById("payment").value;
+
+    if(cart.length===0){
         alert("Keranjang kosong!");
         return;
     }
 
-    if (!nama || !alamat) {
-        alert("Mohon isi nama dan alamat terlebih dahulu!");
+    if(!nama || !alamat){
+        alert("Isi nama dan alamat!");
         return;
     }
 
-    let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
+    let text=
+    "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
 
-    cart.forEach(i => {
-        text += `- ${i.name} x${i.qty}%0A`;
+    cart.forEach(i=>{
+
+        text+=
+        `- ${i.name} x${i.qty}%0A`;
+
     });
 
-    text += `%0ANama: ${nama}`;
-    text += `%0AAlamat: ${alamat}`;
-    text += `%0APembayaran: ${pay.toUpperCase()}`;
+    text+=
+    `%0ANama: ${nama}`;
+
+    text+=
+    `%0AAlamat: ${alamat}`;
+
+    text+=
+    `%0APembayaran: ${pay.toUpperCase()}`;
 
     window.open(
-        "https://wa.me/6288210129982?text=" + text
+    "https://wa.me/6288210129982?text="+text
     );
 }
 
