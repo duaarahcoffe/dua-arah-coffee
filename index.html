@@ -20,7 +20,7 @@
             color: var(--text-dark);
         }
 
-        /* Banner Paling Atas */
+        /* Banner */
         .top-banner {
             width: 100%;
             display: block;
@@ -30,7 +30,7 @@
             width: 100%;
             height: auto;
             display: block;
-            max-height: 450px; /* Batas tinggi maksimal di desktop agar proporsional */
+            max-height: 450px;
             object-fit: cover;
         }
 
@@ -47,7 +47,7 @@
             padding: 20px;
         }
 
-        /* SEKSI PROMOSI (COPYWRITING) */
+        /* PROMO */
         .promo-section {
             background: #fff;
             border-left: 5px solid var(--accent);
@@ -105,7 +105,7 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            margin-left: auto; /* Mendorong tombol ke kanan */
+            margin-left: auto;
         }
 
         /* CART */
@@ -115,6 +115,24 @@
             border-radius: 10px;
             margin-top: 20px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .qty-btn {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .minus {
+            background: #ccc;
+        }
+
+        .plus {
+            background: var(--accent);
+            color: white;
         }
 
         /* INPUT */
@@ -193,8 +211,9 @@
                 "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
             </div>
             <p class="promo-desc">
-                Setiap orang punya cerita dan tujuannya masing-masing, tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama! <br>
-                Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>. Pilih kopi favoritmu, satukan obrolan, dan nikmati kesegarannya bersama-sama!
+                Setiap orang punya cerita dan tujuannya masing-masing,
+                tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama!
+                Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>.
             </p>
         </div>
 
@@ -203,118 +222,196 @@
         <div class="menu-card">
             <img src="americano.jpg" alt="Americano">
             <div>
-                <b>Americano</b><br>Rp 12.500
+                <b>Americano</b><br>
+                Rp 12.500
             </div>
-            <button class="btn" onclick="add('Americano', 12500)">+</button>
+            <button class="btn" onclick="add('Americano',12500)">+</button>
         </div>
 
         <div class="menu-card">
             <img src="aren.jpg" alt="Kopi Aren">
             <div>
-                <b>Kopi Aren</b><br>Rp 17.500
+                <b>Kopi Aren</b><br>
+                Rp 17.500
             </div>
-            <button class="btn" onclick="add('Kopi Aren', 17500)">+</button>
+            <button class="btn" onclick="add('Kopi Aren',17500)">+</button>
         </div>
 
         <h3>Keranjang</h3>
-        <div class="cart" id="cart">Kosong</div>
+
+        <div class="cart" id="cart">
+            Kosong
+        </div>
 
         <h3>Data Pemesan</h3>
+
         <input id="nama" placeholder="Nama Lengkap">
         <input id="alamat" placeholder="Alamat Pengiriman">
 
         <h3>Pembayaran</h3>
+
         <select id="payment" onchange="cekBayar()">
             <option value="cash">Cash</option>
             <option value="qris">QRIS</option>
             <option value="bca">Transfer BCA</option>
         </select>
 
-        <button class="checkout" onclick="checkout()">Checkout WhatsApp</button>
+        <button class="checkout" onclick="checkout()">
+            Checkout WhatsApp
+        </button>
 
     </div>
 
+    <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <h3 id="title"></h3>
-            <img id="img" alt="Payment Method">
+            <img id="img" alt="Payment">
             <span class="close" onclick="closeModal()">Tutup</span>
         </div>
     </div>
 
-    <script>
-        let cart = [];
+<script>
 
-        function add(name, price) {
-            cart.push({name, price});
-            render();
-        }
+let cart = [];
 
-        function render() {
-            let html = "";
-            let total = 0;
+function add(name, price) {
 
-            if (cart.length === 0) {
-                document.getElementById("cart").innerHTML = "Kosong";
-                return;
-            }
+    let item = cart.find(i => i.name === name);
 
-            cart.forEach((item) => {
-                html += `${item.name} - Rp ${item.price.toLocaleString('id-ID')}<br>`;
-                total += item.price;
-            });
+    if(item){
+        item.qty += 1;
+    }else{
+        cart.push({
+            name,
+            price,
+            qty: 1
+        });
+    }
 
-            html += `<hr><b>Total: Rp ${total.toLocaleString('id-ID')}</b>`;
-            document.getElementById("cart").innerHTML = html;
-        }
+    render();
+}
 
-        function cekBayar() {
-            let val = document.getElementById("payment").value;
+function minus(name){
 
-            if (val === "qris") {
-                openModal("QRIS Payment", "qris.jpg");
-            }
-            if (val === "bca") {
-                openModal("Transfer BCA", "bca.jpg");
-            }
-        }
+    let item = cart.find(i => i.name === name);
 
-        function openModal(title, img) {
-            document.getElementById("title").innerText = title;
-            document.getElementById("img").src = img;
-            document.getElementById("modal").style.display = "flex";
-        }
+    if(!item) return;
 
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
+    item.qty -= 1;
 
-        function checkout() {
-            let nama = document.getElementById("nama").value;
-            let alamat = document.getElementById("alamat").value;
-            let pay = document.getElementById("payment").value;
+    if(item.qty <= 0){
+        cart = cart.filter(i => i.name !== name);
+    }
 
-            if (cart.length === 0) {
-                alert("Keranjang kosong!");
-                return;
-            }
+    render();
+}
 
-            if (!nama || !alamat) {
-                alert("Mohon isi nama dan alamat terlebih dahulu!");
-                return;
-            }
+function render() {
 
-            let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
+    let html = "";
+    let total = 0;
 
-            cart.forEach(i => {
-                text += `- ${i.name}%0A`;
-            });
+    if (cart.length === 0) {
+        document.getElementById("cart").innerHTML = "Kosong";
+        return;
+    }
 
-            text += `%0ANama: ${nama}%0AAlamat: ${alamat}%0APembayaran: ${pay.toUpperCase()}`;
+    cart.forEach((item) => {
 
-            window.open("https://wa.me/6288210129982?text=" + text);
-        }
-    </script>
+        let subtotal = item.price * item.qty;
+        total += subtotal;
+
+        html += `
+        <div style="margin-bottom:15px;">
+
+            <b>${item.name}</b><br>
+
+            Rp ${item.price.toLocaleString('id-ID')}
+            x ${item.qty}
+
+            <br><br>
+
+            <button 
+                class="qty-btn minus"
+                onclick="minus('${item.name}')">
+                ➖
+            </button>
+
+            <button 
+                class="qty-btn plus"
+                onclick="add('${item.name}', ${item.price})">
+                ➕
+            </button>
+
+        </div>
+
+        <hr>
+        `;
+    });
+
+    html += `<h3>Total: Rp ${total.toLocaleString('id-ID')}</h3>`;
+
+    document.getElementById("cart").innerHTML = html;
+}
+
+function cekBayar() {
+
+    let val = document.getElementById("payment").value;
+
+    if (val === "qris") {
+        openModal("QRIS Payment", "qris.jpg");
+    }
+
+    if (val === "bca") {
+        openModal("Transfer BCA", "bca.jpg");
+    }
+}
+
+function openModal(title, img) {
+
+    document.getElementById("title").innerText = title;
+    document.getElementById("img").src = img;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+
+    document.getElementById("modal").style.display = "none";
+}
+
+function checkout() {
+
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
+    let pay = document.getElementById("payment").value;
+
+    if (cart.length === 0) {
+        alert("Keranjang kosong!");
+        return;
+    }
+
+    if (!nama || !alamat) {
+        alert("Mohon isi nama dan alamat terlebih dahulu!");
+        return;
+    }
+
+    let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
+
+    cart.forEach(i => {
+        text += `- ${i.name} x${i.qty}%0A`;
+    });
+
+    text += `%0ANama: ${nama}`;
+    text += `%0AAlamat: ${alamat}`;
+    text += `%0APembayaran: ${pay.toUpperCase()}`;
+
+    window.open(
+        "https://wa.me/6288210129982?text=" + text
+    );
+}
+
+</script>
 
 </body>
 </html>
