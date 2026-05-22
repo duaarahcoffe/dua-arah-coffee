@@ -20,18 +20,40 @@
             color: var(--text-dark);
         }
 
-        /* Banner */
-        .top-banner {
-            width: 100%;
-            display: block;
+        /* HERO */
+        .hero{
+            background: linear-gradient(
+                135deg,
+                #4A3525,
+                #8C6A50
+            );
+
+            color:white;
+            text-align:center;
+            padding:70px 20px;
         }
 
-        .top-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-            max-height: 450px;
-            object-fit: cover;
+        .hero h1{
+            font-size:42px;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            max-width:700px;
+            margin:auto;
+            font-size:18px;
+            line-height:1.7;
+            opacity:0.95;
+        }
+
+        .hero span{
+            display:inline-block;
+            margin-top:20px;
+            background:white;
+            color:#4A3525;
+            padding:10px 18px;
+            border-radius:30px;
+            font-weight:bold;
         }
 
         .container {
@@ -189,15 +211,28 @@
 </head>
 <body>
 
-    <!-- BANNER -->
-    <div class="top-banner">
-        <img src="1000585015.png" alt="Dua Arah Coffee Banner">
+    <!-- HERO -->
+    <div class="hero">
+
+        <h1>☕ Dua Arah Coffee</h1>
+
+        <p>
+            Tempat dimana obrolan dimulai,
+            cerita dibagikan,
+            dan kopi menemani setiap arah perjalananmu.
+        </p>
+
+        <span>
+            #NgopiSatuRasa
+        </span>
+
     </div>
 
     <div class="container">
 
         <!-- PROMO -->
         <div class="promo-section">
+
             <div class="promo-tagline">
                 "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
             </div>
@@ -207,12 +242,14 @@
                 tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama!
                 Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>.
             </p>
+
         </div>
 
         <!-- MENU -->
         <h3>Menu</h3>
 
         <div class="menu-card">
+
             <img src="americano.jpg" alt="Americano">
 
             <div>
@@ -223,9 +260,11 @@
             <button class="btn" onclick="add('Americano',12500)">
                 +
             </button>
+
         </div>
 
         <div class="menu-card">
+
             <img src="aren.jpg" alt="Kopi Aren">
 
             <div>
@@ -236,6 +275,7 @@
             <button class="btn" onclick="add('Kopi Aren',17500)">
                 +
             </button>
+
         </div>
 
         <!-- CART -->
@@ -249,6 +289,7 @@
         <h3>Data Pemesan</h3>
 
         <input id="nama" placeholder="Nama Lengkap">
+
         <input id="alamat" placeholder="Alamat Pengiriman">
 
         <!-- PAYMENT -->
