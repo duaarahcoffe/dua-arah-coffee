@@ -430,6 +430,15 @@ function minus(name){
     render();
 }
 
+// Menghitung grand total belanjaan saat ini
+function getGrandTotal() {
+    let total = 0;
+    cart.forEach((item) => {
+        total += item.price * item.qty;
+    });
+    return total;
+}
+
 function render() {
     let html = "";
     let total = 0;
@@ -503,6 +512,10 @@ function checkout() {
         text += `- ${i.name} x${i.qty}%0A`;
     });
 
+    // Menambahkan baris total belanjaan di chat WhatsApp
+    let totalHarga = getGrandTotal();
+    text += `*Total: Rp ${totalHarga.toLocaleString('id-ID')}*%0A`;
+
     text += `%0ANama: ${nama}`;
     text += `%0AAlamat: ${alamat}`;
     text += `%0APembayaran: ${pay.toUpperCase()}`;
@@ -511,9 +524,10 @@ function checkout() {
         text += `%0ACatatan: ${catatan}`;
     }
 
-    // Penambahan pesan wajib menyertakan bukti pembayaran untuk QRIS dan BCA
+    // Jika user menekan tombol order tapi lupa atau sengaja ganti pembayaran QRIS/BCA, pop-up image dipicu kembali sebelum buka WA.
     if (pay === "qris" || pay === "bca") {
-        text += `%0A%0A⚠️ *PENTING:* Mohon kirimkan bukti pembayaran/transfer bersama dengan pesan ini.`;
+        text += `%0A%0A⚠️ *PENTING:* Mohon sertakan bukti pembayaran/transfer bersama dengan pesan ini.`;
+        cekBayar(); 
     }
 
     window.open("https://wa.me/6288210129982?text=" + text);
