@@ -16,6 +16,7 @@
             --text-muted: #705A49;
             --card-bg: #ffffff;
             --border-color: #EFEAE4;
+            --danger: #C0392B;
         }
 
         body {
@@ -240,6 +241,24 @@
             min-height: 80px;
         }
 
+        /* BUKTI BAYAR WRAPPER */
+        .upload-section {
+            background: #ffffff;
+            border: 1px dashed var(--accent);
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .upload-section label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 6px;
+        }
+
         .checkout {
             width: 100%;
             padding: 14px;
@@ -290,7 +309,7 @@
         }
 
         .close {
-            color: #C0392B;
+            color: var(--danger);
             cursor: pointer;
             font-weight: 700;
             display: block;
@@ -383,13 +402,19 @@
             <option value="bca">🏦 Transfer BCA</option>
         </select>
 
-        <!-- NOTES (Tambahan Kolom Catatan Paling Bawah) -->
+        <!-- BUKTI PEMBAYARAN (Ditahan/Disembunyikan secara default) -->
+        <div id="bukti-wrapper" class="upload-section" style="display: none;">
+            <label for="bukti_bayar">📸 Unggah Bukti Pembayaran (Wajib):</label>
+            <input type="file" id="bukti_bayar" accept="image/*">
+        </div>
+
+        <!-- NOTES -->
         <h3>Catatan Pesanan</h3>
         <textarea id="catatan" placeholder="Contoh: Es batu dipisah, kurangi gula, atau extra shot ditambahkan ke Kopi Aren..."></textarea>
 
         <!-- CHECKOUT BUTTON -->
         <button class="checkout" onclick="checkout()">
-            Kiriman Pesanan ke WhatsApp
+            Kirim Pesanan ke WhatsApp
         </button>
 
     </div>
@@ -464,11 +489,18 @@ function render() {
 
 function cekBayar() {
     let val = document.getElementById("payment").value;
+    let buktiWrapper = document.getElementById("bukti-wrapper");
+
     if (val === "qris") {
+        buktiWrapper.style.display = "block";
         openModal("QRIS Payment", "qris.jpg");
-    }
-    if (val === "bca") {
+    } else if (val === "bca") {
+        buktiWrapper.style.display = "block";
         openModal("Transfer BCA", "bca.jpg");
+    } else {
+        // Jika pilih cash, sembunyikan kolom bukti bayar & reset isinya
+        buktiWrapper.style.display = "none";
+        document.getElementById("bukti_bayar").value = "";
     }
 }
 
@@ -486,7 +518,8 @@ function checkout() {
     let nama = document.getElementById("nama").value;
     let alamat = document.getElementById("alamat").value;
     let pay = document.getElementById("payment").value;
-    let catatan = document.getElementById("catatan").value; // Mengambil value catatan
+    let catatan = document.getElementById("catatan").value;
+    let buktiBayar = document.getElementById("bukti_bayar").files;
 
     if (cart.length === 0) {
         alert("Keranjang kosong!");
@@ -495,6 +528,12 @@ function checkout() {
 
     if (!nama || !alamat) {
         alert("Mohon isi nama dan alamat terlebih dahulu!");
+        return;
+    }
+
+    // VALIDASI/TAHAN PESANAN: Jika metode transfer/qris tetapi file bukti belum dipilih
+    if ((pay === "qris" || pay === "bca") && buktiBayar.length === 0) {
+        alert("Pesanan ditahan! Mohon unggah bukti pembayaran terlebih dahulu sebelum melanjutkan.");
         return;
     }
 
@@ -507,7 +546,11 @@ function checkout() {
     text += `%0AAlamat: ${alamat}`;
     text += `%0APembayaran: ${pay.toUpperCase()}`;
     
-    // Jika kolom catatan diisi, tambahkan ke teks WhatsApp
+    // Beri keterangan tambahan di teks WhatsApp jika pembayaran non-cash
+    if (pay === "qris" || pay === "bca") {
+        text += `%0AStatus Bukti: Sudah diunggah di web (Akan dikirimkan lampiran gambarnya setelah pesan ini)`;
+    }
+
     if (catatan.trim() !== "") {
         text += `%0ACatatan: ${catatan}`;
     }
