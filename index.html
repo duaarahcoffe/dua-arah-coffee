@@ -361,7 +361,6 @@
                 </div>
                 <div class="menu-footer">
                     <span class="price-tag">Rp 2.500</span>
-                    <!-- Perbaikan: Mengubah 2.500 menjadi 2500 agar kalkulasi JavaScript akurat -->
                     <button class="btn" onclick="add('Extra Shot Espresso',2500)">Tambah</button>
                 </div>
             </div>
@@ -510,6 +509,11 @@ function checkout() {
     
     if (catatan.trim() !== "") {
         text += `%0ACatatan: ${catatan}`;
+    }
+
+    // Penambahan pesan wajib menyertakan bukti pembayaran untuk QRIS dan BCA
+    if (pay === "qris" || pay === "bca") {
+        text += `%0A%0A⚠️ *PENTING:* Mohon kirimkan bukti pembayaran/transfer bersama dengan pesan ini.`;
     }
 
     window.open("https://wa.me/6288210129982?text=" + text);
