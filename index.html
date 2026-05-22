@@ -214,8 +214,8 @@
             color: white;
         }
 
-        /* FORM INPUTS */
-        input, select {
+        /* FORM INPUTS & TEXTAREA */
+        input, select, textarea {
             width: 100%;
             padding: 12px 14px;
             margin-top: 6px;
@@ -230,9 +230,14 @@
             transition: border-color 0.2s;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         .checkout {
@@ -346,7 +351,7 @@
             </div>
         </div>
 
-        <!-- Produk 3 (Tambahan Extra Shot) -->
+        <!-- Produk 3 -->
         <div class="menu-card">
             <img class="product-img" src="espresso.jpg" alt="Extra Shot Espresso">
             <div class="menu-details">
@@ -378,6 +383,11 @@
             <option value="bca">🏦 Transfer BCA</option>
         </select>
 
+        <!-- NOTES (Tambahan Kolom Catatan Paling Bawah) -->
+        <h3>Catatan Pesanan</h3>
+        <textarea id="catatan" placeholder="Contoh: Es batu dipisah, kurangi gula, atau extra shot ditambahkan ke Kopi Aren..."></textarea>
+
+        <!-- CHECKOUT BUTTON -->
         <button class="checkout" onclick="checkout()">
             Kiriman Pesanan ke WhatsApp
         </button>
@@ -476,6 +486,7 @@ function checkout() {
     let nama = document.getElementById("nama").value;
     let alamat = document.getElementById("alamat").value;
     let pay = document.getElementById("payment").value;
+    let catatan = document.getElementById("catatan").value; // Mengambil value catatan
 
     if (cart.length === 0) {
         alert("Keranjang kosong!");
@@ -495,6 +506,11 @@ function checkout() {
     text += `%0ANama: ${nama}`;
     text += `%0AAlamat: ${alamat}`;
     text += `%0APembayaran: ${pay.toUpperCase()}`;
+    
+    // Jika kolom catatan diisi, tambahkan ke teks WhatsApp
+    if (catatan.trim() !== "") {
+        text += `%0ACatatan: ${catatan}`;
+    }
 
     window.open("https://wa.me/6288210129982?text=" + text);
 }
