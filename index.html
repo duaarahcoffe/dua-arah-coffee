@@ -1,662 +1,480 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dua Arah Coffee</title>
 
-<title>Dua Arah Coffee</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --primary: #2C1E14;
+            --accent: #A07855;
+            --accent-light: #EDE4DC;
+            --bg: #FDFBF9;
+            --text-dark: #3D2A1D;
+            --text-muted: #705A49;
+        }
 
-<style>
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
 
-:root{
-    --primary:#3B2A1F;
-    --secondary:#8B5E3C;
-    --cream:#F8F4EE;
-    --white:#FFFFFF;
-    --dark:#1F1F1F;
-    --green:#25D366;
-}
+        /* HERO - Desain Baru yang Lebih Estetis */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #2C1E14 0%, #4A3525 50%, #634832 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 24px 120px 24px;
+            overflow: hidden;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+        /* Dekorasi lingkaran estetik di background belakang */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(160,120,85,0.2) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
 
-body{
-    background:var(--cream);
-    color:var(--dark);
-}
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 0 0 16px 0;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
 
-/* HERO */
+        .hero p {
+            max-width: 600px;
+            margin: auto;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #E2D7CD;
+            font-weight: 400;
+        }
 
-.hero{
-    min-height:70vh;
-    background:
-    linear-gradient(
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.55)
-    ),
-    url('coffee-bg.jpg') center/cover;
+        .hero span {
+            display: inline-block;
+            margin-top: 28px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FDFBF9;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:30px;
-    color:white;
-}
+        .hero span:hover {
+            background: #FDFBF9;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
 
-.hero-content{
-    max-width:750px;
-}
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 0 24px 40px 24px;
+        }
 
-.hero h1{
-    font-size:55px;
-    font-weight:700;
-    margin-bottom:15px;
-    letter-spacing:1px;
-}
+        /* PROMO - Desain Kartu Minimalis Modern */
+        .promo-section {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #EFEAE4;
+            padding: 32px 24px;
+            margin: -40px 0 35px 0; /* Membuat efek kartu menumpuk sedikit di atas hero */
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(44, 30, 20, 0.05);
+            text-align: center;
+            z-index: 10;
+        }
 
-.hero p{
-    font-size:18px;
-    line-height:1.8;
-    opacity:0.95;
-}
+        .promo-tagline {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
 
-.hero-badge{
-    display:inline-block;
-    margin-top:25px;
-    background:white;
-    color:var(--primary);
-    padding:12px 24px;
-    border-radius:40px;
-    font-weight:600;
-    font-size:14px;
-}
+        .promo-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
 
-/* CONTAINER */
+        .promo-highlight {
+            font-weight: 600;
+            color: var(--accent);
+            background: #FAF3EC;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:40px 20px;
-}
+        /* MENU SECTION */
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 30px 0 15px 0;
+        }
 
-/* PROMO */
+        .menu-card {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: white;
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            border: 1px solid #EFEAE4;
+            box-shadow: 0 2px 8px rgba(44, 30, 20, 0.02);
+        }
 
-.promo{
-    background:var(--white);
-    border-radius:25px;
-    padding:30px;
-    margin-top:-60px;
-    position:relative;
-    z-index:2;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    text-align:center;
-}
+        .menu-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
 
-.promo h2{
-    color:var(--primary);
-    margin-bottom:10px;
-}
+        .menu-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-.promo p{
-    color:#666;
-    line-height:1.8;
-}
+        .menu-info b {
+            font-size: 16px;
+            color: var(--primary);
+        }
 
-/* SECTION TITLE */
+        .menu-info span {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
 
-.section-title{
-    font-size:28px;
-    margin:40px 0 20px;
-    color:var(--primary);
-}
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-left: auto;
+            transition: background 0.2s;
+        }
 
-/* MENU GRID */
+        .btn:hover {
+            background: #856043;
+        }
 
-.menu-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
+        /* CART & INPUTS */
+        .cart {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #EFEAE4;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
 
-/* CARD */
+        .qty-btn {
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 6px;
+        }
 
-.card{
-    background:white;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,0.06);
-    transition:0.3s;
-}
+        .minus {
+            background: #EFEAE4;
+            color: var(--text-dark);
+        }
 
-.card:hover{
-    transform:translateY(-5px);
-}
+        .plus {
+            background: var(--accent);
+            color: white;
+        }
 
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            border: 1px solid #DCD5CE;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 14px;
+            background: white;
+            color: var(--text-dark);
+        }
 
-.card-body{
-    padding:20px;
-}
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
 
-.card-title{
-    font-size:22px;
-    font-weight:600;
-}
+        .checkout {
+            width: 100%;
+            padding: 14px;
+            background: #25D366; /* Warna khas WhatsApp */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+            transition: transform 0.2s;
+        }
 
-.price{
-    margin:10px 0 20px;
-    color:var(--secondary);
-    font-weight:600;
-}
+        .checkout:hover {
+            transform: scale(1.01);
+            background: #20BA59;
+        }
 
-/* BUTTON */
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(44, 30, 20, 0.6);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-.btn{
-    width:100%;
-    border:none;
-    padding:12px;
-    border-radius:14px;
-    background:var(--primary);
-    color:white;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
+        .modal-content {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
 
-.btn:hover{
-    background:#2a1d15;
-}
+        .modal img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
 
-/* CART */
-
-.cart-box{
-    margin-top:40px;
-    background:white;
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.06);
-}
-
-.cart-item{
-    padding:15px 0;
-    border-bottom:1px solid #eee;
-}
-
-.qty{
-    display:flex;
-    gap:10px;
-    margin-top:10px;
-}
-
-.qty button{
-    width:35px;
-    height:35px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:bold;
-}
-
-.minus{
-    background:#ddd;
-}
-
-.plus{
-    background:var(--secondary);
-    color:white;
-}
-
-/* FORM */
-
-.form-box{
-    margin-top:35px;
-    background:white;
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.06);
-}
-
-.input-group{
-    margin-bottom:18px;
-}
-
-.input-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:500;
-}
-
-input,select{
-    width:100%;
-    padding:14px;
-    border-radius:14px;
-    border:1px solid #ddd;
-    font-size:15px;
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    border-color:var(--secondary);
-}
-
-/* CHECKOUT */
-
-.checkout{
-    width:100%;
-    margin-top:10px;
-    border:none;
-    padding:16px;
-    border-radius:16px;
-    background:var(--green);
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-/* MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.7);
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-}
-
-.modal-content{
-    background:white;
-    padding:25px;
-    border-radius:25px;
-    width:320px;
-    text-align:center;
-}
-
-.modal img{
-    width:100%;
-    border-radius:15px;
-    margin-top:15px;
-}
-
-.close{
-    margin-top:20px;
-    display:inline-block;
-    color:red;
-    cursor:pointer;
-    font-weight:600;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-    .hero h1{
-        font-size:40px;
-    }
-
-    .hero p{
-        font-size:16px;
-    }
-
-}
-
-</style>
+        .close {
+            color: #C0392B;
+            cursor: pointer;
+            font-weight: 600;
+            display: block;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
+    <!-- HERO -->
+    <div class="hero">
         <h1>☕ Dua Arah Coffee</h1>
+        <p>Tempat dimana obrolan dimulai, cerita dibagikan, dan kopi menemani setiap arah perjalananmu.</p>
+        <span>#NgopiSatuRasa</span>
+    </div>
 
-        <p>
-            Tempat dimana cerita dimulai,
-            obrolan dipertemukan,
-            dan kopi menemani setiap perjalananmu.
-        </p>
+    <div class="container">
 
-        <div class="hero-badge">
-            #NgopiSatuRasa
+        <!-- PROMO -->
+        <div class="promo-section">
+            <div class="promo-tagline">"Dua arah, banyak tujuan. Berbagi cerita, satu rasa."</div>
+            <p class="promo-desc">
+                Setiap orang punya cerita dan tujuannya masing-masing, tapi nongkrong dan seru-seruan bareng tetep butuh satu rasa yang sama! Yuk, <span class="promo-highlight">pesan bareng grup-mu sekarang</span>.
+            </p>
         </div>
 
-    </div>
+        <!-- MENU -->
+        <h3>Menu</h3>
 
-</section>
-
-<div class="container">
-
-    <!-- PROMO -->
-
-    <div class="promo">
-
-        <h2>
-            Dua arah, banyak tujuan.
-        </h2>
-
-        <p>
-            Nongkrong lebih seru dengan kopi favoritmu.
-            Pesan sekarang dan nikmati suasana hangat
-            bersama teman, pasangan, ataupun keluargamu.
-        </p>
-
-    </div>
-
-    <!-- MENU -->
-
-    <h2 class="section-title">
-        Menu Favorit
-    </h2>
-
-    <div class="menu-grid">
-
-        <div class="card">
-
-            <img src="americano.jpg">
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Americano
-                </div>
-
-                <div class="price">
-                    Rp 12.500
-                </div>
-
-                <button class="btn"
-                onclick="add('Americano',12500)">
-                    Tambah
-                </button>
-
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1551046710-23b9d98f9181?w=150&auto=format&fit=crop&q=80" alt="Americano">
+            <div class="menu-info">
+                <b>Americano</b>
+                <span>Rp 12.500</span>
             </div>
-
+            <button class="btn" onclick="add('Americano',12500)">+</button>
         </div>
 
-        <div class="card">
-
-            <img src="aren.jpg">
-
-            <div class="card-body">
-
-                <div class="card-title">
-                    Kopi Aren
-                </div>
-
-                <div class="price">
-                    Rp 17.500
-                </div>
-
-                <button class="btn"
-                onclick="add('Kopi Aren',17500)">
-                    Tambah
-                </button>
-
+        <div class="menu-card">
+            <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?w=150&auto=format&fit=crop&q=80" alt="Kopi Aren">
+            <div class="menu-info">
+                <b>Kopi Aren</b>
+                <span>Rp 17.500</span>
             </div>
-
+            <button class="btn" onclick="add('Kopi Aren',17500)">+</button>
         </div>
 
-    </div>
+        <!-- CART -->
+        <h3>Keranjang</h3>
+        <div class="cart" id="cart">Keranjang belanjaanmu kosong</div>
 
-    <!-- CART -->
+        <!-- DATA -->
+        <h3>Data Pemesan</h3>
+        <input id="nama" placeholder="Nama Lengkap">
+        <input id="alamat" placeholder="Alamat Pengiriman">
 
-    <div class="cart-box">
+        <!-- PAYMENT -->
+        <h3>Pembayaran</h3>
+        <select id="payment" onchange="cekBayar()">
+            <option value="cash">💵 Cash / Bayar di Tempat</option>
+            <option value="qris">📱 QRIS (Otomatis Muncul QR)</option>
+            <option value="bca">🏦 Transfer Bank BCA</option>
+        </select>
 
-        <h2>Keranjang</h2>
-
-        <div id="cart">
-            Kosong
-        </div>
-
-    </div>
-
-    <!-- FORM -->
-
-    <div class="form-box">
-
-        <h2>Data Pemesan</h2>
-
-        <div class="input-group">
-            <label>Nama</label>
-            <input id="nama" placeholder="Masukkan nama">
-        </div>
-
-        <div class="input-group">
-            <label>Alamat</label>
-            <input id="alamat" placeholder="Masukkan alamat">
-        </div>
-
-        <div class="input-group">
-            <label>Pembayaran</label>
-
-            <select id="payment" onchange="cekBayar()">
-                <option value="cash">Cash</option>
-                <option value="qris">QRIS</option>
-                <option value="bca">Transfer BCA</option>
-            </select>
-        </div>
-
-        <button class="checkout"
-        onclick="checkout()">
-            Checkout WhatsApp
+        <button class="checkout" onclick="checkout()">
+            🟢 Kirim Pesanan via WhatsApp
         </button>
 
     </div>
 
-</div>
-
-<!-- MODAL -->
-
-<div class="modal" id="modal">
-
-    <div class="modal-content">
-
-        <h3 id="title"></h3>
-
-        <img id="img">
-
-        <div class="close"
-        onclick="closeModal()">
-            Tutup
+    <!-- MODAL PEMBAYARAN -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3 id="title" style="margin-top: 0;"></h3>
+            <!-- Menggunakan QR placeholder gratisan agar langsung jalan di GitHub -->
+            <img id="img" alt="Payment QR / Detail">
+            <span class="close" onclick="closeModal()">Tutup Jendela</span>
         </div>
-
     </div>
 
-</div>
-
 <script>
+let cart = [];
 
-let cart=[];
-
-function add(name,price){
-
-    let item=cart.find(i=>i.name===name);
-
+function add(name, price) {
+    let item = cart.find(i => i.name === name);
     if(item){
-        item.qty+=1;
+        item.qty += 1;
     }else{
-        cart.push({
-            name,
-            price,
-            qty:1
-        });
+        cart.push({ name, price, qty: 1 });
     }
-
     render();
 }
 
 function minus(name){
-
-    let item=cart.find(i=>i.name===name);
-
+    let item = cart.find(i => i.name === name);
     if(!item) return;
-
-    item.qty--;
-
-    if(item.qty<=0){
-        cart=cart.filter(i=>i.name!==name);
+    item.qty -= 1;
+    if(item.qty <= 0){
+        cart = cart.filter(i => i.name !== name);
     }
-
     render();
 }
 
-function render(){
+function render() {
+    let html = "";
+    let total = 0;
 
-    let html="";
-    let total=0;
-
-    if(cart.length===0){
-
-        document.getElementById("cart")
-        .innerHTML="Keranjang kosong";
-
+    if (cart.length === 0) {
+        document.getElementById("cart").innerHTML = "Keranjang belanjaanmu kosong";
         return;
     }
 
-    cart.forEach(item=>{
+    cart.forEach((item) => {
+        let subtotal = item.price * item.qty;
+        total += subtotal;
 
-        let subtotal=item.price*item.qty;
-
-        total+=subtotal;
-
-        html+=`
-        <div class="cart-item">
-
-            <b>${item.name}</b><br>
-
-            Rp ${item.price.toLocaleString('id-ID')}
-            x ${item.qty}
-
-            <div class="qty">
-
-                <button class="minus"
-                onclick="minus('${item.name}')">
-                -
-                </button>
-
-                <button class="plus"
-                onclick="add('${item.name}',${item.price})">
-                +
-                </button>
-
+        html += `
+        <div style="margin-bottom:15px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <b style="color: #2C1E14;">${item.name}</b><br>
+                <span style="font-size: 14px; color: #705A49;">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</span>
             </div>
-
+            <div>
+                <button class="qty-btn minus" onclick="minus('${item.name}')">➖</button>
+                <button class="qty-btn plus" onclick="add('${item.name}', ${item.price})">➕</button>
+            </div>
         </div>
+        <hr style="border: 0; border-top: 1px solid #EFEAE4; margin: 12px 0;">
         `;
     });
 
-    html+=`
-    <h3 style="margin-top:20px;">
-        Total: Rp ${total.toLocaleString('id-ID')}
-    </h3>
-    `;
-
-    document.getElementById("cart")
-    .innerHTML=html;
+    html += `<h3 style="margin: 15px 0 0 0; text-align: right;">Total: Rp ${total.toLocaleString('id-ID')}</h3>`;
+    document.getElementById("cart").innerHTML = html;
 }
 
-function cekBayar(){
-
-    let val=
-    document.getElementById("payment").value;
-
-    if(val==="qris"){
-        openModal(
-            "QRIS Payment",
-            "qris.jpg"
-        );
+function cekBayar() {
+    let val = document.getElementById("payment").value;
+    if (val === "qris") {
+        // Menggunakan dummy QR Code agar sistem tidak error saat di-host online
+        openModal("Metode Pembayaran QRIS", "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=DuaArahCoffeeQRIS");
     }
-
-    if(val==="bca"){
-        openModal(
-            "Transfer BCA",
-            "bca.jpg"
-        );
+    if (val === "bca") {
+        // Menggunakan dummy text image info rekening
+        openModal("Transfer BCA: 8821-0129-982 a/n Dua Arah", "https://dummyimage.com/300x150/a07855/ffffff.png&text=BCA+:+88210129982");
     }
 }
 
-function openModal(title,img){
-
-    document.getElementById("title")
-    .innerText=title;
-
-    document.getElementById("img")
-    .src=img;
-
-    document.getElementById("modal")
-    .style.display="flex";
+function openModal(title, img) {
+    document.getElementById("title").innerText = title;
+    document.getElementById("img").src = img;
+    document.getElementById("modal").style.display = "flex";
 }
 
-function closeModal(){
-
-    document.getElementById("modal")
-    .style.display="none";
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
 }
 
-function checkout(){
+function checkout() {
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
+    let pay = document.getElementById("payment").value;
 
-    let nama=
-    document.getElementById("nama").value;
-
-    let alamat=
-    document.getElementById("alamat").value;
-
-    let pay=
-    document.getElementById("payment").value;
-
-    if(cart.length===0){
-        alert("Keranjang kosong!");
+    if (cart.length === 0) {
+        alert("Keranjang belanja masih kosong, yuk pilih kopimu!");
         return;
     }
 
-    if(!nama || !alamat){
-        alert("Isi nama dan alamat!");
+    if (!nama || !alamat) {
+        alert("Mohon lengkapi Nama dan Alamat pengiriman ya!");
         return;
     }
 
-    let text=
-    "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
-
-    cart.forEach(i=>{
-
-        text+=
-        `- ${i.name} x${i.qty}%0A`;
-
+    let text = "Halo Dua Arah Coffee,%0A%0ASaya ingin memesan Kopi:%0A";
+    cart.forEach(i => {
+        text += `- ${i.name} (${i.qty}x)%0A`;
     });
 
-    text+=
-    `%0ANama: ${nama}`;
+    text += `%0A*Data Pemesan*`;
+    text += `%0ANama: ${nama}`;
+    text += `%0AAlamat: ${alamat}`;
+    text += `%0AMetode Bayar: ${pay.toUpperCase()}`;
 
-    text+=
-    `%0AAlamat: ${alamat}`;
-
-    text+=
-    `%0APembayaran: ${pay.toUpperCase()}`;
-
-    window.open(
-    "https://wa.me/6288210129982?text="+text
-    );
+    window.open("https://wa.me/6288210129982?text=" + text);
 }
-
 </script>
 
 </body>
