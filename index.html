@@ -106,7 +106,7 @@
         /* MODERNISED MENU CARDS (Image on Top) */
         .menu-card {
             display: flex;
-            flex-direction: column; /* Mengubah susunan menjadi vertikal atas ke bawah */
+            flex-direction: column;
             background: var(--card-bg);
             margin-bottom: 20px;
             border-radius: 14px;
@@ -121,7 +121,6 @@
             box-shadow: 0 8px 20px rgba(44, 30, 20, 0.05);
         }
 
-        /* Foto ditaruh di paling atas menu */
         .menu-card .product-img {
             width: 100%;
             height: 220px;
@@ -343,6 +342,21 @@
                 <div class="menu-footer">
                     <span class="price-tag">Rp 17.500</span>
                     <button class="btn" onclick="add('Kopi Aren',17500)">Tambah</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Produk 3 (Tambahan Extra Shot) -->
+        <div class="menu-card">
+            <img class="product-img" src="espresso.jpg" alt="Extra Shot Espresso">
+            <div class="menu-details">
+                <div class="menu-title">Extra Shot Espresso</div>
+                <div class="menu-composition">
+                    Keterangan: Tambahan 1 shot espresso murni ekstra untuk rasa kopi yang lebih strong. Opsi ini dapat ditambahkan secara bebas ke dalam varian menu kopi apa saja seperti <b>Americano</b> maupun <b>Kopi Aren</b> sesuai seleramu.
+                </div>
+                <div class="menu-footer">
+                    <span class="price-tag">Rp 5.000</span>
+                    <button class="btn" onclick="add('Extra Shot Espresso',5000)">Tambah</button>
                 </div>
             </div>
         </div>
