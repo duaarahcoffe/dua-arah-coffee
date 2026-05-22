@@ -16,7 +16,6 @@
             --text-muted: #705A49;
             --card-bg: #ffffff;
             --border-color: #EFEAE4;
-            --danger: #C0392B;
         }
 
         body {
@@ -241,24 +240,6 @@
             min-height: 80px;
         }
 
-        /* BUKTI BAYAR WRAPPER */
-        .upload-section {
-            background: #ffffff;
-            border: 1px dashed var(--accent);
-            padding: 16px;
-            border-radius: 10px;
-            margin-top: 8px;
-            margin-bottom: 16px;
-        }
-        
-        .upload-section label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 6px;
-        }
-
         .checkout {
             width: 100%;
             padding: 14px;
@@ -277,12 +258,6 @@
         .checkout:hover {
             background: #20BA59;
             transform: scale(1.005);
-        }
-
-        .checkout:disabled {
-            background: #a5cca5;
-            cursor: not-allowed;
-            box-shadow: none;
         }
 
         /* MODAL */
@@ -315,7 +290,7 @@
         }
 
         .close {
-            color: var(--danger);
+            color: #C0392B;
             cursor: pointer;
             font-weight: 700;
             display: block;
@@ -326,12 +301,14 @@
 </head>
 <body>
 
+    <!-- BANNER -->
     <div class="top-banner">
         <img src="1000585015.png" alt="Dua Arah Coffee Banner">
     </div>
 
     <div class="container">
 
+        <!-- PROMO -->
         <div class="promo-section">
             <div class="promo-tagline">
                 "Dua arah, banyak tujuan. Berbagi cerita, satu rasa."
@@ -341,14 +318,16 @@
             </p>
         </div>
 
+        <!-- MENU -->
         <h3>Menu</h3>
 
+        <!-- Produk 1 -->
         <div class="menu-card">
             <img class="product-img" src="americano.jpg" alt="Americano">
             <div class="menu-details">
                 <div class="menu-title">Americano</div>
                 <div class="menu-composition">
-                    Komposisi: 1 shot Espresso khas Dua Arah (100% biji kopi Arabika pilihan) dicampur dengan air mineral murni berkualitas. Karakter rasa kuat, bersih, dan menyegarkan.
+                    Komposisi: 2 shot Espresso khas Dua Arah (100% biji kopi Arabika pilihan) dicampur dengan air mineral murni berkualitas. Karakter rasa kuat, bersih, dan menyegarkan.
                 </div>
                 <div class="menu-footer">
                     <span class="price-tag">Rp 12.500</span>
@@ -357,6 +336,7 @@
             </div>
         </div>
 
+        <!-- Produk 2 -->
         <div class="menu-card">
             <img class="product-img" src="aren.jpg" alt="Kopi Aren">
             <div class="menu-details">
@@ -371,6 +351,7 @@
             </div>
         </div>
 
+        <!-- Produk 3 -->
         <div class="menu-card">
             <img class="product-img" src="espresso.jpg" alt="Extra Shot Espresso">
             <div class="menu-details">
@@ -380,18 +361,22 @@
                 </div>
                 <div class="menu-footer">
                     <span class="price-tag">Rp 2.500</span>
+                    <!-- Perbaikan: Mengubah 2.500 menjadi 2500 agar kalkulasi JavaScript akurat -->
                     <button class="btn" onclick="add('Extra Shot Espresso',2500)">Tambah</button>
                 </div>
             </div>
         </div>
 
+        <!-- CART -->
         <h3>Keranjang</h3>
         <div class="cart" id="cart">Kosong</div>
 
+        <!-- DATA -->
         <h3>Data Pemesan</h3>
         <input id="nama" placeholder="Nama Lengkap">
         <input id="alamat" placeholder="Alamat Pengiriman">
 
+        <!-- PAYMENT -->
         <h3>Pembayaran</h3>
         <select id="payment" onchange="cekBayar()">
             <option value="cash">💵 Cash (Bayar Di Tempat)</option>
@@ -399,20 +384,18 @@
             <option value="bca">🏦 Transfer BCA</option>
         </select>
 
-        <div id="bukti-wrapper" class="upload-section" style="display: none;">
-            <label for="bukti_bayar">📸 Unggah Bukti Pembayaran (Wajib):</label>
-            <input type="file" id="bukti_bayar" accept="image/*">
-        </div>
-
+        <!-- NOTES -->
         <h3>Catatan Pesanan</h3>
         <textarea id="catatan" placeholder="Contoh: Es batu dipisah, kurangi gula, atau extra shot ditambahkan ke Kopi Aren..."></textarea>
 
-        <button class="checkout" id="btn-checkout" onclick="checkout()">
-            Kirim Pesanan ke WhatsApp
+        <!-- CHECKOUT BUTTON -->
+        <button class="checkout" onclick="checkout()">
+            Kiriman Pesanan ke WhatsApp
         </button>
 
     </div>
 
+    <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <h3 id="title" style="margin-top:0;"></h3>
@@ -423,7 +406,6 @@
 
 <script>
 let cart = [];
-const IMGBB_API_KEY = "06af644aef4ce3e5daf714691358cd74"; // Kode API ImgBB milik Anda
 
 function add(name, price) {
     let item = cart.find(i => i.name === name);
@@ -483,17 +465,11 @@ function render() {
 
 function cekBayar() {
     let val = document.getElementById("payment").value;
-    let buktiWrapper = document.getElementById("bukti-wrapper");
-
     if (val === "qris") {
-        buktiWrapper.style.display = "block";
         openModal("QRIS Payment", "qris.jpg");
-    } else if (val === "bca") {
-        buktiWrapper.style.display = "block";
+    }
+    if (val === "bca") {
         openModal("Transfer BCA", "bca.jpg");
-    } else {
-        buktiWrapper.style.display = "none";
-        document.getElementById("bukti_bayar").value = "";
     }
 }
 
@@ -507,35 +483,11 @@ function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-// FUNGSI UTAMA UNTUK UPLOAD KE IMGBB VIA API
-async function uploadToImgBB(file) {
-    let formData = new FormData();
-    formData.append("image", file);
-
-    try {
-        let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-            method: "POST",
-            body: formData
-        });
-        let data = await response.json();
-        if (data.success) {
-            return data.data.url; // Mengembalikan Direct URL gambar yang sukses diupload
-        } else {
-            throw new Error(data.error.message);
-        }
-    } catch (error) {
-        console.error("Gagal mengunggah gambar:", error);
-        return null;
-    }
-}
-
-async function checkout() {
+function checkout() {
     let nama = document.getElementById("nama").value;
     let alamat = document.getElementById("alamat").value;
     let pay = document.getElementById("payment").value;
     let catatan = document.getElementById("catatan").value;
-    let buktiBayarFile = document.getElementById("bukti_bayar").files[0];
-    let btnCheckout = document.getElementById("btn-checkout");
 
     if (cart.length === 0) {
         alert("Keranjang kosong!");
@@ -547,30 +499,6 @@ async function checkout() {
         return;
     }
 
-    let buktiUrl = "";
-    
-    // Validasi jika metode transfer/qris tetapi file bukti belum dipilih
-    if (pay === "qris" || pay === "bca") {
-        if (!buktiBayarFile) {
-            alert("Pesanan ditahan! Mohon unggah bukti pembayaran terlebih dahulu sebelum melanjutkan.");
-            return;
-        }
-
-        // Efek Loading saat proses upload berlangsung
-        btnCheckout.disabled = true;
-        btnCheckout.innerText = "Mengunggah Bukti Pembayaran... Mohon Tunggu";
-
-        buktiUrl = await uploadToImgBB(buktiBayarFile);
-
-        if (!buktiUrl) {
-            alert("Gagal mengunggah bukti pembayaran ke server. Silakan coba lagi.");
-            btnCheckout.disabled = false;
-            btnCheckout.innerText = "Kirim Pesanan ke WhatsApp";
-            return;
-        }
-    }
-
-    // MEMBUAT TEKS WHATSAPP
     let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
     cart.forEach(i => {
         text += `- ${i.name} x${i.qty}%0A`;
@@ -580,17 +508,9 @@ async function checkout() {
     text += `%0AAlamat: ${alamat}`;
     text += `%0APembayaran: ${pay.toUpperCase()}`;
     
-    if (pay === "qris" || pay === "bca") {
-        text += `%0ABukti Pembayaran: ${buktiUrl}`;
-    }
-
     if (catatan.trim() !== "") {
         text += `%0ACatatan: ${catatan}`;
     }
-
-    // Reset tombol setelah selesai
-    btnCheckout.disabled = false;
-    btnCheckout.innerText = "Kirim Pesanan ke WhatsApp";
 
     window.open("https://wa.me/6288210129982?text=" + text);
 }
