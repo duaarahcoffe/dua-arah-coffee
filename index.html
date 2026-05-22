@@ -74,11 +74,15 @@
             font-size: 18px;
             font-weight: 700;
             color: var(--primary);
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .promo-desc {
             font-size: 14px;
             color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
         }
 
         .promo-highlight {
@@ -103,6 +107,8 @@
             margin-bottom: 20px;
             border-radius: 14px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(44, 30, 20, 0.02);
+            overflow: hidden;
         }
 
         .menu-card .product-img {
@@ -111,29 +117,7 @@
             object-fit: cover;
         }
 
-        .menu-details {
-            padding: 16px;
-        }
-
-        .menu-title {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .menu-composition {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .menu-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .price-tag {
-            font-weight: 700;
-        }
+        .menu-details { padding: 16px; }
 
         .btn {
             background: var(--accent);
@@ -142,6 +126,7 @@
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
+            font-weight: 700;
         }
 
         .cart {
@@ -154,9 +139,9 @@
         input, select, textarea {
             width: 100%;
             padding: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #DCD5CE;
         }
 
         .checkout {
@@ -166,38 +151,26 @@
             color: white;
             border: none;
             border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
             font-weight: 700;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-        }
     </style>
 </head>
-
 <body>
 
 <div class="top-banner">
-    <img src="1000585015.png">
+    <img src="1000585015.png" alt="">
 </div>
 
 <div class="container">
 
     <div class="promo-section">
-        <div class="promo-tagline">"Dua arah, banyak tujuan."</div>
-        <div class="promo-desc">Pesan bareng teman kamu sekarang</div>
+        <div class="promo-tagline">"Dua arah, banyak tujuan. Berbagi cerita, satu rasa."</div>
+        <p class="promo-desc">
+            Setiap orang punya cerita dan tujuannya masing-masing.
+        </p>
     </div>
 
     <h3>Menu</h3>
@@ -205,18 +178,15 @@
     <div class="menu-card">
         <img class="product-img" src="americano.jpg">
         <div class="menu-details">
-            <div class="menu-title">Americano</div>
-            <div class="menu-footer">
-                <span class="price-tag">Rp 12.500</span>
-                <button class="btn" onclick="add('Americano',12500)">Tambah</button>
-            </div>
+            <b>Americano</b>
+            <button class="btn" onclick="add('Americano',12500)">Tambah</button>
         </div>
     </div>
 
     <h3>Keranjang</h3>
     <div class="cart" id="cart">Kosong</div>
 
-    <h3>Data</h3>
+    <h3>Data Pemesan</h3>
     <input id="nama" placeholder="Nama">
     <input id="alamat" placeholder="Alamat">
 
@@ -227,9 +197,10 @@
         <option value="bca">BCA</option>
     </select>
 
-    <textarea id="catatan" placeholder="Catatan"></textarea>
+    <h3>Catatan</h3>
+    <textarea id="catatan"></textarea>
 
-    <button class="checkout" onclick="checkout()">Kirim WA</button>
+    <button class="checkout" onclick="checkout()">Kirim ke WhatsApp</button>
 
 </div>
 
@@ -244,17 +215,11 @@ function add(name, price){
 }
 
 function render(){
-    if(cart.length === 0){
-        document.getElementById("cart").innerHTML = "Kosong";
-        return;
-    }
-
     let html = "";
-    cart.forEach(i => {
-        html += `${i.name} x${i.qty}<br>`;
+    cart.forEach(i=>{
+        html += `<div>${i.name} x${i.qty}</div>`;
     });
-
-    document.getElementById("cart").innerHTML = html;
+    document.getElementById("cart").innerHTML = cart.length ? html : "Kosong";
 }
 
 function checkout(){
@@ -263,9 +228,9 @@ function checkout(){
     let pay = document.getElementById("payment").value;
     let catatan = document.getElementById("catatan").value;
 
-    let text = "Halo Dua Arah Coffee,%0A%0APesanan:%0A";
+    let text = "Halo Dua Arah Coffee,%0APesanan:%0A";
 
-    cart.forEach(i => {
+    cart.forEach(i=>{
         text += `- ${i.name} x${i.qty}%0A`;
     });
 
@@ -273,12 +238,12 @@ function checkout(){
     text += `%0AAlamat: ${alamat}`;
     text += `%0APembayaran: ${pay.toUpperCase()}`;
 
-    // 🔥 TAMBAHAN PENGINGAT QRIS/BCA
+    // 🔔 TAMBAHAN PENGINGAT QRIS / BCA
     if(pay === "qris" || pay === "bca"){
-        text += `%0A%0A⚠️ PENTING: Wajib kirim bukti pembayaran (QRIS/Transfer) ke chat ini setelah pesan dikirim.`;
+        text += `%0A%0A⚠️ PENTING: Setelah transfer QRIS/BCA, wajib kirim bukti pembayaran ke chat ini.`;
     }
 
-    if(catatan.trim() !== ""){
+    if(catatan){
         text += `%0ACatatan: ${catatan}`;
     }
 
